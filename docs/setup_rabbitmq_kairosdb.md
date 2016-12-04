@@ -24,7 +24,7 @@
 
 	# Setup MQTT plugin config: see example here https://raw.githubusercontent.com/rabbitmq/rabbitmq-server/stable/docs/rabbitmq.config.example
 	cd /etc/rabbitmq/
-	#curl -L -O https://raw.githubusercontent.com/dwettstein/comfortbox-api-services/master/config/rabbitmq/rabbitmq.config
+	#curl -L -O https://raw.githubusercontent.com/dwettstein/comfortbox-api-services/master/configs/rabbitmq/rabbitmq.config
 	curl -L -O https://raw.githubusercontent.com/rabbitmq/rabbitmq-server/stable/docs/rabbitmq.config.example > rabbitmq.config
 	vi rabbitmq.config
 
@@ -46,8 +46,8 @@
 	
 	# Update plugin configuration and queue bindings according to your RabbitMQ setup
 	cd /opt/kairosdb/conf/
-	#curl -L -O https://raw.githubusercontent.com/dwettstein/comfortbox-api-services/master/config/kairosdb-rabbitmq/kairosdb-rabbitmq.properties
-	#curl -L -O https://raw.githubusercontent.com/dwettstein/comfortbox-api-services/master/config/kairosdb-rabbitmq/bindings.json
+	#curl -L -O https://raw.githubusercontent.com/dwettstein/comfortbox-api-services/master/configs/kairosdb-rabbitmq/kairosdb-rabbitmq.properties
+	#curl -L -O https://raw.githubusercontent.com/dwettstein/comfortbox-api-services/master/configs/kairosdb-rabbitmq/bindings.json
 	vi kairosdb-rabbitmq.properties
 	vi bindings.json
 
