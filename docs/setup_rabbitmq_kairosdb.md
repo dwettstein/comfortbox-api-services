@@ -3,15 +3,16 @@
 1. Setup WiFi of the ComfortBox with the Particle App
 2. Check Particle API commands using curl or Postman
 	```bash
+	# Display text
 	curl https://api.particle.io/v1/devices/events -d "name=220037000f47343432313031/display" -d "data=HelloWorld!" -d "private=false" -d "ttl=60" -d "access_token=enter_Particle_token_here"
-	```
-	```bash
+
+	# Display colors
 	curl https://api.particle.io/v1/devices/events -d "name=220037000f47343432313031/led" -d "data=/////wAAAP8AAAD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" -d "private=false" -d "ttl=60" -d "access_token=enter_Particle_token_here"
-	```
-	```bash
+
+	# Set sample interval
 	curl https://api.particle.io/v1/devices/220037000f47343432313031/set_interval -d "arg=5000" -d "access_token=enter_Particle_token_here"
-	```
-	```bash
+
+	# Set MQTT server
 	curl https://api.particle.io/v1/devices/220037000f47343432313031/set_host -d "arg=192.168.1.116:1883" -d "access_token=enter_Particle_token_here"
 	```
 3. Install RabbitMQ with MQTT Plugin on RaspberryPi (Raspian): [see here for more information](https://www.rabbitmq.com/install-debian.html)
