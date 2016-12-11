@@ -77,3 +77,23 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+
+### Mac ###
+.DS_Store
+
+
+### Editors ###
+*.swo
+*.swp
+*.sublime-*
+.idea
+.project
+
+
+### LoopBack ###
+*.csv
+*.dat
+*.iml
+*.out
+.strong-pm

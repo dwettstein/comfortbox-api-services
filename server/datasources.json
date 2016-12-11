@@ -1,0 +1,54 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "ParticleAPI": {
+    "name": "ParticleAPI",
+    "baseURL": "https://api.particle.io/",
+    "crud": false,
+    "connector": "rest",
+    "options": {
+      "headers": {
+        "accept": "application/json",
+        "content-type": "application/json"
+      }
+    },
+    "operations": [
+      {
+        "template": {
+          "method": "POST",
+          "url": "https://api.particle.io/v1/devices/events",
+          "form": {
+            "name": "{particle_id}/display",
+            "data": "{text}",
+            "private": "false",
+            "ttl": "60",
+            "access_token": "enter_Particle_token_here"
+          },
+          "responsePath": "$"
+        },
+        "functions": {
+          "displayText": ["particle_id", "text"]
+        }
+      },
+      {
+        "template": {
+          "method": "POST",
+          "url": "https://api.particle.io/v1/devices/events",
+          "form": {
+            "name": "{particle_id}/led",
+            "data": "{colorsInBase64}",
+            "private": "false",
+            "ttl": "60",
+            "access_token": "enter_Particle_token_here"
+          },
+          "responsePath": "$"
+        },
+        "functions": {
+          "displayLed": ["particle_id", "colorsInBase64"]
+        }
+      }
+    ]
+  }
+}

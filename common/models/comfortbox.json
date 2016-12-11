@@ -1,0 +1,98 @@
+{
+  "name": "comfortbox",
+  "plural": "comfortboxes",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "particle_id": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {
+    "displayText": {
+      "isStatic": false,
+      "accepts": [
+        {
+          "arg": "text",
+          "type": "string",
+          "required": true,
+          "description": "Text to display on the ComfortBox"
+        }
+      ],
+      "returns": [
+        {
+          "arg": "response",
+          "type": "string",
+          "root": true,
+          "description": "Response from Particle API."
+        }
+      ],
+      "description": "Display a message on a ComfortBox.",
+      "http": [
+        {
+          "verb": "post"
+        }
+      ]
+    },
+    "displayLed": {
+      "isStatic": false,
+      "accepts": [
+        {
+          "arg": "colorsInBase64",
+          "type": "string",
+          "required": true,
+          "description": "Colors to display on the ComfortBox formatted in Base64"
+        }
+      ],
+      "returns": [
+        {
+          "arg": "response",
+          "type": "string",
+          "root": true,
+          "description": "Response from Particle API."
+        }
+      ],
+      "description": "Display various LED colors on a ComfortBox.",
+      "http": [
+        {
+          "verb": "post"
+        }
+      ]
+    },
+    "displayHexColor": {
+      "isStatic": false,
+      "accepts": [
+        {
+          "arg": "colorInHex",
+          "type": "string",
+          "required": true,
+          "description": "Color to display on the ComfortBox formatted in HEX"
+        }
+      ],
+      "returns": [
+        {
+          "arg": "response",
+          "type": "string",
+          "root": true,
+          "description": "Response from Particle API."
+        }
+      ],
+      "description": "Display a single LED color in HEX on a ComfortBox.",
+      "http": [
+        {
+          "verb": "post"
+        }
+      ]
+    }
+  }
+}
