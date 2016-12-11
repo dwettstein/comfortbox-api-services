@@ -1,0 +1,476 @@
+{
+	"variables": [],
+	"info": {
+		"name": "ComfortBox",
+		"_postman_id": "58ec34f9-2d43-c19b-1bf0-79c5d1dcb901",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Display text",
+			"request": {
+				"url": "https://api.particle.io/v1/devices/events",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "{{device_id}}/display",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "data",
+							"value": "Good day from device id {{device_id}}.",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "private",
+							"value": "false",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "ttl",
+							"value": "64",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "access_token",
+							"value": "{{access_token}}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Display colors",
+			"request": {
+				"url": "https://api.particle.io/v1/devices/events",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "{{device_id}}/led",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "data",
+							"value": "/////wAAAP8AAAD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "private",
+							"value": "false",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "ttl",
+							"value": "64",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "access_token",
+							"value": "{{access_token}}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Set sample interval",
+			"request": {
+				"url": "https://api.particle.io/v1/devices/{{device_id}}/set_interval",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "arg",
+							"value": "5000",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "access_token",
+							"value": "{{access_token}}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Set MQTT host",
+			"request": {
+				"url": "https://api.particle.io/v1/devices/{{device_id}}/set_host",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "arg",
+							"value": "192.168.1.107:1883",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "access_token",
+							"value": "{{access_token}}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get current temperature",
+			"request": {
+				"url": "https://api.particle.io/v1/devices/{{device_id}}/get_temp",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "arg",
+							"value": "",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "access_token",
+							"value": "{{access_token}}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get current humidity",
+			"request": {
+				"url": "https://api.particle.io/v1/devices/{{device_id}}/get_hum",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "arg",
+							"value": "",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "access_token",
+							"value": "{{access_token}}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get current pressure",
+			"request": {
+				"url": "https://api.particle.io/v1/devices/{{device_id}}/get_press",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "arg",
+							"value": "",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "access_token",
+							"value": "{{access_token}}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get current luminosity",
+			"request": {
+				"url": "https://api.particle.io/v1/devices/{{device_id}}/get_lum",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "arg",
+							"value": "",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "access_token",
+							"value": "{{access_token}}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get current wind",
+			"request": {
+				"url": "https://api.particle.io/v1/devices/{{device_id}}/get_wind",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "arg",
+							"value": "",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "access_token",
+							"value": "{{access_token}}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get current sound level",
+			"request": {
+				"url": "https://api.particle.io/v1/devices/{{device_id}}/get_sound",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "arg",
+							"value": "",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "access_token",
+							"value": "{{access_token}}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get current CO2",
+			"request": {
+				"url": "https://api.particle.io/v1/devices/{{device_id}}/get_co2",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "arg",
+							"value": "",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "access_token",
+							"value": "{{access_token}}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get current battery",
+			"request": {
+				"url": "https://api.particle.io/v1/devices/{{device_id}}/get_batt",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "arg",
+							"value": "",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "access_token",
+							"value": "{{access_token}}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get current VCC",
+			"request": {
+				"url": "https://api.particle.io/v1/devices/{{device_id}}/get_vcc",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "arg",
+							"value": "",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "access_token",
+							"value": "{{access_token}}",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
