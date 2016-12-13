@@ -31,7 +31,7 @@
 
     sudo service rabbitmq-server restart
     ```
-4. Check if data is sent by opening: http://raspberrypi:15672/
+4. Check if data is sent by opening: http://raspberrypi:15672/ (default login: guest - guest)
 5. Install KairosDB
     ```bash
     curl -L -O https://github.com/kairosdb/kairosdb/releases/download/v1.1.2/kairosdb_1.1.2-1_all.deb
@@ -70,5 +70,5 @@
 
     sudo service grafana-server start
     ```
-9. [Optional] Check if Grafana is running by opening: http://raspberrypi:3000 (login: admin - admin)
-    - Download and import the example Dashboard from [here](../configs/grafana/ComfortBox_7-1481634877386.json): https://raw.githubusercontent.com/dwettstein/comfortbox-api-services/master/configs/grafana/ComfortBox_7-1481634877386.json
+9. [Optional] Check if Grafana is running by opening: http://raspberrypi:3000 (default login: admin - admin)
+    - Download and import the example Dashboard from [here](https://github.com/dwettstein/comfortbox-api-services/raw/master/configs/grafana/ComfortBox_7-1481634877386.json): https://raw.githubusercontent.com/dwettstein/comfortbox-api-services/master/configs/grafana/ComfortBox_7-1481634877386.json
