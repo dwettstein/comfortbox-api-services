@@ -34,10 +34,10 @@
           "arg": "response",
           "type": "string",
           "root": true,
-          "description": "Response from Particle API."
+          "description": "Response from Particle API"
         }
       ],
-      "description": "Display a message on a ComfortBox.",
+      "description": "Display a message on a ComfortBox",
       "http": [
         {
           "verb": "post"
@@ -59,10 +59,10 @@
           "arg": "response",
           "type": "string",
           "root": true,
-          "description": "Response from Particle API."
+          "description": "Response from Particle API"
         }
       ],
-      "description": "Display various LED colors on a ComfortBox.",
+      "description": "Display various LED colors on a ComfortBox",
       "http": [
         {
           "verb": "post"
@@ -84,10 +84,66 @@
           "arg": "response",
           "type": "string",
           "root": true,
-          "description": "Response from Particle API."
+          "description": "Response from Particle API"
         }
       ],
-      "description": "Display a single LED color in HEX on a ComfortBox.",
+      "description": "Display a single LED color in HEX on a ComfortBox",
+      "http": [
+        {
+          "verb": "post"
+        }
+      ]
+    },
+    "setInterval": {
+      "isStatic": false,
+      "accepts": [
+        {
+          "arg": "interval",
+          "type": "string",
+          "required": true,
+          "description": "Interval for sending messages from the ComfortBox to the MQTT queue"
+        }
+      ],
+      "returns": [
+        {
+          "arg": "response",
+          "type": "string",
+          "root": true,
+          "description": "Response from Particle API"
+        }
+      ],
+      "description": "Change the interval for sending messages from the ComfortBox to the MQTT queue",
+      "http": [
+        {
+          "verb": "post"
+        }
+      ]
+    },
+    "setMqttHost": {
+      "isStatic": false,
+      "accepts": [
+        {
+          "arg": "host",
+          "type": "string",
+          "required": true,
+          "description": "IP or hostname of the MQTT message queue"
+        },
+        {
+          "arg": "port",
+          "type": "string",
+          "required": true,
+          "description": "Port of the MQTT message queue"
+        }
+      ],
+      "returns": [
+        {
+          "arg": "response",
+          "type": "string",
+          "root": true,
+          "description": "Response from Particle API"
+        }
+      ],
+      "description": "Change the MQTT host used by a ComfortBox",
       "http": [
         {
           "verb": "post"

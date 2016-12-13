@@ -1,13 +1,13 @@
 'use strict';
 
-module.exports = function(Comfortbox) {
+module.exports = function (Comfortbox) {
     /**
      * Display a message on a ComfortBox.
-     * 
+     *
      * @param {string} text Text to display on the ComfortBox
      * @param {Function(Error, response)} callback
      */
-    Comfortbox.prototype.displayText = function(text, callback) {
+    Comfortbox.prototype.displayText = function (text, callback) {
         console.log("Called function displayText with param text: " + text);
 
         var processResponse = function (error, response, body) {
@@ -21,11 +21,11 @@ module.exports = function(Comfortbox) {
 
     /**
      * Display various LED colors on a ComfortBox.
-     * 
+     *
      * @param {string} colorsInBase64 Colors to display on the ComfortBox formatted in Base64
      * @param {Function(Error, response)} callback
      */
-    Comfortbox.prototype.displayLed = function(colorsInBase64, callback) {
+    Comfortbox.prototype.displayLed = function (colorsInBase64, callback) {
         console.log("Called function displayLed with param colorsInBase64: " + colorsInBase64);
 
         var processResponse = function (error, response, body) {
@@ -39,11 +39,11 @@ module.exports = function(Comfortbox) {
 
     /**
      * Display a single LED color in HEX on a ComfortBox.
-     * 
+     *
      * @param {string} colorInHex Color to display on the ComfortBox formatted in HEX
      * @param {Function(Error, response)} callback
      */
-    Comfortbox.prototype.displayHexColor = function(colorInHex, callback) {
+    Comfortbox.prototype.displayHexColor = function (colorInHex, callback) {
         console.log("Called function displayHexColor with param colorInHex: " + colorInHex);
         var base64Color = convertHexToBase64(colorInHex);
         var colorsInBase64 = multiplyBase64Color(base64Color, 24);
@@ -56,7 +56,44 @@ module.exports = function(Comfortbox) {
         console.log("Requesting Particle API with particle_id: " + this.particle_id);
         Comfortbox.app.dataSources.ParticleAPI.displayLed(this.particle_id, colorsInBase64, processResponse);
     };
-    
+
+    /**
+     * Change the interval for sending messages from the ComfortBox to the MQTT queue.
+     *
+     * @param {string} interval Interval for sending messages from the ComfortBox to the MQTT queue
+     * @param {Function(Error, response)} callback
+     */
+    Comfortbox.prototype.setInterval = function (interval, callback) {
+        console.log("Called function setInterval with param interval: " + interval);
+
+        var processResponse = function (error, response, body) {
+            var result = processParticleResponse(error, response, body);
+            callback(null, result);
+        };
+
+        console.log("Requesting Particle API with particle_id: " + this.particle_id);
+        Comfortbox.app.dataSources.ParticleAPI.setInterval(this.particle_id, interval, processResponse);
+    };
+
+    /**
+     * Change the MQTT host used by a ComfortBox.
+     *
+     * @param {string} host IP or hostname of the MQTT message queue
+     * @param {string} port Port of the MQTT message queue
+     * @param {Function(Error, response)} callback
+     */
+    Comfortbox.prototype.setMqttHost = function (host, port, callback) {
+        console.log("Called function setMqttHost with params host: " + host + ", port: " + port);
+
+        var processResponse = function (error, response, body) {
+            var result = processParticleResponse(error, response, body);
+            callback(null, result);
+        };
+
+        console.log("Requesting Particle API with particle_id: " + this.particle_id);
+        Comfortbox.app.dataSources.ParticleAPI.setMqttHost(this.particle_id, host, port, processResponse);
+    };
+
 };
 
 // *****************************************************************************
@@ -68,7 +105,7 @@ var processParticleResponse = function (error, response, body) {
     if (!error) {
         //if (body.statusCode === 200) {}
         console.log('response: ', response);
-        // TODO: parse Particle API response 
+        // TODO: parse Particle API response
         result = response[0];
     } else {
         console.log('Error received from calling Particle API: ' + error);
@@ -94,8 +131,8 @@ var convertHexToBase64 = function (hexColor) {
     }
     var binaryArray = new Array();
     for (var i = 0; i < hexColor.length / 2; i++) {
-        var hexPart = hexColor.substr(i * 2, 2); // Parse to binary through the HEX string 
-        binaryArray[i] = parseInt(hexPart, 16);        
+        var hexPart = hexColor.substr(i * 2, 2); // Parse to binary through the HEX string
+        binaryArray[i] = parseInt(hexPart, 16);
     }
     var base64Color = new Buffer(binaryArray, 'binary').toString('base64');
     console.log("Converted HEX '" + hexColor + "' to Base64 '" + base64Color + "'.");

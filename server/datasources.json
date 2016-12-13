@@ -48,6 +48,38 @@
         "functions": {
           "displayLed": ["particle_id", "colorsInBase64"]
         }
+      },
+      {
+        "template": {
+          "method": "POST",
+          "url": "https://api.particle.io/v1/devices/{particle_id}/set_interval",
+          "form": {
+            "arg": "{interval}",
+            "private": "false",
+            "ttl": "60",
+            "access_token": "enter_Particle_token_here"
+          },
+          "responsePath": "$"
+        },
+        "functions": {
+          "setInterval": ["particle_id", "interval"]
+        }
+      },
+      {
+        "template": {
+          "method": "POST",
+          "url": "https://api.particle.io/v1/devices/{particle_id}/set_host",
+          "form": {
+            "arg": "{host}:{port}",
+            "private": "false",
+            "ttl": "60",
+            "access_token": "enter_Particle_token_here"
+          },
+          "responsePath": "$"
+        },
+        "functions": {
+          "setMqttHost": ["particle_id", "host", "port"]
+        }
       }
     ]
   }
