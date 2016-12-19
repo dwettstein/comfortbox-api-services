@@ -1,5 +1,13 @@
 # comfortbox-api-services
-Repository for my Master's thesis: RESTful services and automation for comfort-oriented smart devices
+Repository for my Master's thesis: RESTful services and automation for comfort-oriented smart devices.
+
+### Big picture
+![Big picture](./docs/images/big_picture.png)
+
+### Screenshots
+| RabbitMQ                                | KairosDB                                | API Explorer                                    | Grafana                               |
+|-----------------------------------------|-----------------------------------------|-------------------------------------------------|---------------------------------------|
+| ![RabbitMQ](./docs/images/rabbitmq.png) | ![KairosDB](./docs/images/kairosdb.png) | ![API Explorer](./docs/images/api_explorer.png) | ![Grafana](./docs/images/grafana.png) |
 
 ## Installation instructions
 For setting up RabbitMQ, KairosDB and Grafana, take a look at the documentation [here](./docs/setup_server.md).
