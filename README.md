@@ -1,5 +1,9 @@
 # comfortbox-api-services
-Repository for my Master's thesis: RESTful services and automation for comfort-oriented smart devices.
+This is the source code repository for my Master's thesis project: RESTful services and automation for comfort-oriented smart devices.
+
+In a nutshell, the goal of this project is to build up proper data-storage and a well-defined RESTful API for ComfortBoxes. Furthermore, I want to add some additional value by allowing to integrate a ComfortBox into workflows.
+
+If you are more interested in the ComfortBox itself, please have a look at the GitHub repository here:  https://github.com/DurandA/comfortbox
 
 ### Big picture
 ![Big picture](./docs/images/big_picture.png)
