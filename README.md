@@ -6,7 +6,7 @@ In a nutshell, the goal of this project is to build up proper data-storage and a
 If you are more interested in the ComfortBox itself, please have a look at the GitHub repository here:  https://github.com/DurandA/comfortbox
 
 ### Big picture
-<img src="./docs/images/big_picture.png" alt="Big picture" style="max-width: 500px;"/>
+<img src="./docs/images/big_picture.png" alt="Big picture" style="width: 500px;"/>
 
 ### Screenshots
 | RabbitMQ                                | KairosDB                                | API Explorer                                    | Grafana                               |
