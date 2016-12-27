@@ -15,7 +15,7 @@
     # Set MQTT server
     curl https://api.particle.io/v1/devices/220037000f47343432313031/set_host -d "arg=192.168.1.116:1883" -d "access_token=enter_Particle_token_here"
     ```
-3. Install RabbitMQ with MQTT Plugin on RaspberryPi (Raspian): [see here for more information](https://www.rabbitmq.com/install-debian.html)
+3. Install RabbitMQ with MQTT Plugin on RaspberryPi (Raspian) - [see here for more information](https://www.rabbitmq.com/install-debian.html)
     ```bash
     echo 'deb http://www.rabbitmq.com/debian/ stable main' | sudo tee /etc/apt/sources.list.d/rabbitmq.list
     sudo apt-get update
@@ -32,7 +32,7 @@
     sudo service rabbitmq-server restart
     ```
 4. Check if data is sent by opening: http://raspberrypi:15672/ (default login: guest - guest)
-5. Install KairosDB
+5. Install KairosDB - [see here for more information](https://kairosdb.github.io/docs/build/html/index.html)
     ```bash
     curl -L -O https://github.com/kairosdb/kairosdb/releases/download/v1.1.2/kairosdb_1.1.2-1_all.deb
     sudo dpkg -i kairosdb_1.1.2-1_all.deb
@@ -55,7 +55,7 @@
     sudo service kairosdb restart
     ```
 7. Check if data is received by opening: http://raspberrypi:8080/
-8. [Optional] Install Grafana GUI
+8. [Optional] Install Grafana GUI - [see here for more information](http://docs.grafana.org/installation/debian/)
     ```bash
     curl -L -O --insecure https://dl.bintray.com/fg2it/deb-rpi-1b/main/g/grafana_4.0.2-1481228314_armhf.deb
     sudo apt-get install adduser libfontconfig
@@ -71,4 +71,13 @@
     sudo service grafana-server start
     ```
 9. [Optional] Check if Grafana is running by opening: http://raspberrypi:3000 (default login: admin - admin)
+    - Install KairosDB plugin - [see here for more information](https://grafana.net/plugins/grafana-kairosdb-datasource)
+        ```bash
+        grafana-cli plugins install grafana-kairosdb-datasource
+        sudo service grafana-server restart
+        ```
+    - Add KairosDB datasource in Grafana GUI
+        - Name: `KairosDB`
+        - Type: `KairosDB`
+        - Url: `http://localhost:8080`
     - Download and import the example Dashboard from [here](https://github.com/dwettstein/comfortbox-api-services/raw/master/configs/grafana/ComfortBox_7-1481634877386.json): https://raw.githubusercontent.com/dwettstein/comfortbox-api-services/master/configs/grafana/ComfortBox_7-1481634877386.json
