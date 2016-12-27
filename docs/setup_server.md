@@ -31,6 +31,14 @@
     curl -L -O https://raw.githubusercontent.com/rabbitmq/rabbitmq-server/stable/docs/rabbitmq.config.example > rabbitmq.config
     vi rabbitmq.config
 
+    # Create new user
+    rabbitmqctl add_user test test
+    rabbitmqctl set_user_tags test administrator
+    rabbitmqctl set_permissions -p / test ".*" ".*" ".*"
+
+    # Optional: Enable Browser GUI
+    sudo rabbitmq-plugins enable rabbitmq_management
+
     sudo service rabbitmq-server restart
     ```
 4. Check if data is sent by opening: http://raspberrypi:15672/ (default login: guest - guest)
@@ -86,4 +94,4 @@
         - Name: `KairosDB`
         - Type: `KairosDB`
         - Url: `http://localhost:8080`
-    - Download and import the example Dashboard from [here](https://github.com/dwettstein/comfortbox-api-services/raw/master/configs/grafana/ComfortBox_7-1481634877386.json): https://raw.githubusercontent.com/dwettstein/comfortbox-api-services/master/configs/grafana/ComfortBox_7-1481634877386.json
+    - Download and import the example Dashboard from [here](https://github.com/dwettstein/comfortbox-api-services/raw/master/configs/grafana/ComfortBox_7-1482862650706.json): https://raw.githubusercontent.com/dwettstein/comfortbox-api-services/master/configs/grafana/ComfortBox_7-1482862650706.json
