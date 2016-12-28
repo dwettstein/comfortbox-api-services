@@ -33,7 +33,7 @@
 
     # Create new user
     rabbitmqctl add_user sa-comfortbox the_password
-    rabbitmqctl set_user_tags sa-comfortbox apiuser
+    rabbitmqctl set_user_tags sa-comfortbox management
     rabbitmqctl set_permissions -p / sa-comfortbox ".*" ".*" ".*"
 
     # Optional: Enable Browser GUI
