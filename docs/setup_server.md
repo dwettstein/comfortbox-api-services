@@ -32,9 +32,9 @@
     vi rabbitmq.config
 
     # Create new user
-    rabbitmqctl add_user test test
-    rabbitmqctl set_user_tags test administrator
-    rabbitmqctl set_permissions -p / test ".*" ".*" ".*"
+    rabbitmqctl add_user sa-comfortbox the_password
+    rabbitmqctl set_user_tags sa-comfortbox apiuser
+    rabbitmqctl set_permissions -p / sa-comfortbox ".*" ".*" ".*"
 
     # Optional: Enable Browser GUI
     sudo rabbitmq-plugins enable rabbitmq_management
