@@ -29,14 +29,12 @@
           "description": "Text to display on the ComfortBox"
         }
       ],
-      "returns": [
-        {
-          "arg": "response",
-          "type": "string",
-          "root": true,
-          "description": "Response from Particle API"
-        }
-      ],
+      "returns": {
+        "arg": "response",
+        "type": "string",
+        "root": true,
+        "description": "Response from Particle API"
+      },
       "description": "Display a message on a ComfortBox",
       "http": [
         {
@@ -54,14 +52,12 @@
           "description": "Colors to display on the ComfortBox formatted in Base64"
         }
       ],
-      "returns": [
-        {
-          "arg": "response",
-          "type": "string",
-          "root": true,
-          "description": "Response from Particle API"
-        }
-      ],
+      "returns": {
+        "arg": "response",
+        "type": "string",
+        "root": true,
+        "description": "Response from Particle API"
+      },
       "description": "Display various LED colors on a ComfortBox",
       "http": [
         {
@@ -79,14 +75,12 @@
           "description": "Color to display on the ComfortBox formatted in HEX"
         }
       ],
-      "returns": [
-        {
-          "arg": "response",
-          "type": "string",
-          "root": true,
-          "description": "Response from Particle API"
-        }
-      ],
+      "returns": {
+        "arg": "response",
+        "type": "string",
+        "root": true,
+        "description": "Response from Particle API"
+      },
       "description": "Display a single LED color in HEX on a ComfortBox",
       "http": [
         {
@@ -104,14 +98,12 @@
           "description": "Interval for sending messages from the ComfortBox to the MQTT queue"
         }
       ],
-      "returns": [
-        {
-          "arg": "response",
-          "type": "string",
-          "root": true,
-          "description": "Response from Particle API"
-        }
-      ],
+      "returns": {
+        "arg": "response",
+        "type": "string",
+        "root": true,
+        "description": "Response from Particle API"
+      },
       "description": "Change the interval for sending messages from the ComfortBox to the MQTT queue",
       "http": [
         {
@@ -135,18 +127,33 @@
           "description": "Port of the MQTT message queue"
         }
       ],
-      "returns": [
-        {
-          "arg": "response",
-          "type": "string",
-          "root": true,
-          "description": "Response from Particle API"
-        }
-      ],
+      "returns": {
+        "arg": "response",
+        "type": "string",
+        "root": true,
+        "description": "Response from Particle API"
+      },
       "description": "Change the MQTT host used by a ComfortBox",
       "http": [
         {
           "verb": "post"
+        }
+      ]
+    },
+    "getMetricNames": {
+      "isStatic": false,
+      "accepts": [
+      ],
+      "returns": {
+        "arg": "response",
+        "type": "string",
+        "root": true,
+        "description": "Response from KairosDB API"
+      },
+      "description": "Returns a list of all metric names containing this box's Particle id.",
+      "http": [
+        {
+          "verb": "get"
         }
       ]
     }

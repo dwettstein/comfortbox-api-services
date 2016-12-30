@@ -94,28 +94,52 @@ module.exports = function (Comfortbox) {
         Comfortbox.app.dataSources.ParticleAPI.setMqttHost(this.particle_id, host, port, processResponse);
     };
 
+    /**
+     * Get a list of all metric names containing this box's Particle id.
+     *
+     * @param {Function(Error, response)} callback
+     */
+    Comfortbox.prototype.getMetricNames = function (callback) {
+        console.log("Called function getMetricNames");
+
+        var processResponse = function (error, response, body) {
+            var result = processKairosDBResponse(error, response, body);
+            callback(null, result);
+        };
+
+        console.log("Requesting KairosDB API");
+        Comfortbox.app.dataSources.KairosDB.metricnames(processResponse);
+    };
 };
 
 // *****************************************************************************
 // Helper functions
 
+var processKairosDBResponse = function (error, response, body) {
+    console.log("Processing response from KairosDB API.");
+    console.log(response);
+    if (error) {
+        console.log('Error received from calling KairosDB API: ' + error.statusCode);
+        return error;
+    }
+
+    // TODO: parse KairosDB API response
+    return response;
+}
+
 var processParticleResponse = function (error, response, body) {
     console.log("Processing response from Particle API.");
-    var result;
-    if (!error) {
-        //if (body.statusCode === 200) {}
-        console.log('response: ', response);
-        // TODO: parse Particle API response
-        result = response[0];
-    } else {
-        console.log('Error received from calling Particle API: ' + error);
-        console.log('response: ', response);
+    console.log(response);
+    if (error) {
+        console.log('Error received from calling Particle API: ' + error.statusCode);
         if (error.statusCode === 401) {
             console.error("Received statusCode 401 from ParticleAPI. Did you enter your Particle token within the file './server/datasources.json'?");
         }
-        result = error;
+        return error;
     }
-    return result;
+
+    // TODO: parse Particle API response
+    return response;
 }
 
 var convertHexToBase64 = function (hexColor) {
