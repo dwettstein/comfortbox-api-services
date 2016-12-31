@@ -15,6 +15,10 @@
 
     # Set MQTT server
     curl https://api.particle.io/v1/devices/220037000f47343432313031/set_host -d "arg=192.168.1.116:1883" -d "access_token=enter_Particle_token_here"
+
+    # Display sensors data on the box
+    curl https://api.particle.io/v1/devices/220037000f47343432313031/displayData -d "arg=nothing" -d "access_token=enter_Particle_token_here"
+
     ```
 3. Install RabbitMQ with MQTT Plugin on RaspberryPi (Raspian) - [see here for more information](https://www.rabbitmq.com/install-debian.html)
 

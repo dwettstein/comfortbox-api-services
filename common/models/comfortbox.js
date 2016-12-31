@@ -119,7 +119,7 @@ var processKairosDBResponse = function (error, response, body) {
     console.log("Processing response from KairosDB API.");
     console.log(response);
     if (error) {
-        console.log('Error received from calling KairosDB API: ' + error.statusCode);
+        console.log('Error received from calling KairosDB API: \n' + error);
         return error;
     }
 
@@ -131,7 +131,7 @@ var processParticleResponse = function (error, response, body) {
     console.log("Processing response from Particle API.");
     console.log(response);
     if (error) {
-        console.log('Error received from calling Particle API: ' + error.statusCode);
+        console.log('Error received from calling Particle API: \n' + error);
         if (error.statusCode === 401) {
             console.error("Received statusCode 401 from ParticleAPI. Did you enter your Particle token within the file './server/datasources.json'?");
         }
@@ -139,7 +139,8 @@ var processParticleResponse = function (error, response, body) {
     }
 
     // TODO: parse Particle API response
-    return response;
+    // TODO: Response is always an array containing the response object as only element.
+    return response[0];
 }
 
 var convertHexToBase64 = function (hexColor) {
