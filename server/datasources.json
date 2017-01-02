@@ -11,7 +11,8 @@
     "options": {
       "headers": {
         "accept": "application/json",
-        "content-type": "application/json"
+        "content-type": "application/json",
+        "Authorization": "Bearer 000000_enter_Particle_token_here_0000000"
       }
     },
     "operations": [
@@ -21,10 +22,7 @@
           "url": "https://api.particle.io/v1/devices/events",
           "form": {
             "name": "{particle_id}/display",
-            "data": "{text}",
-            "private": "false",
-            "ttl": "60",
-            "access_token": "enter_Particle_token_here"
+            "data": "{text}"
           },
           "responsePath": "$"
         },
@@ -38,10 +36,7 @@
           "url": "https://api.particle.io/v1/devices/events",
           "form": {
             "name": "{particle_id}/led",
-            "data": "{colorsInBase64}",
-            "private": "false",
-            "ttl": "60",
-            "access_token": "enter_Particle_token_here"
+            "data": "{colorsInBase64}"
           },
           "responsePath": "$"
         },
@@ -54,10 +49,7 @@
           "method": "POST",
           "url": "https://api.particle.io/v1/devices/{particle_id}/set_interval",
           "form": {
-            "arg": "{interval}",
-            "private": "false",
-            "ttl": "60",
-            "access_token": "enter_Particle_token_here"
+            "arg": "{interval}"
           },
           "responsePath": "$"
         },
@@ -70,10 +62,7 @@
           "method": "POST",
           "url": "https://api.particle.io/v1/devices/{particle_id}/set_host",
           "form": {
-            "arg": "{host}:{port}",
-            "private": "false",
-            "ttl": "60",
-            "access_token": "enter_Particle_token_here"
+            "arg": "{host}:{port}"
           },
           "responsePath": "$"
         },
