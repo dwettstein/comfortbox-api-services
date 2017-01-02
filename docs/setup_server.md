@@ -5,19 +5,19 @@
 
     ```bash
     # Display text
-    curl https://api.particle.io/v1/devices/events -d "name=220037000f47343432313031/display" -d "data=HelloWorld!" -d "private=false" -d "ttl=60" -d "access_token=enter_Particle_token_here"
+    curl https://api.particle.io/v1/devices/events -H "Authorization: Bearer enter_Particle_token_here" -d "name=220037000f47343432313031/display" -d "data=HelloWorld!" -d "private=false" -d "ttl=60"
 
     # Display colors
-    curl https://api.particle.io/v1/devices/events -d "name=220037000f47343432313031/led" -d "data=/////wAAAP8AAAD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" -d "private=false" -d "ttl=60" -d "access_token=enter_Particle_token_here"
+    curl https://api.particle.io/v1/devices/events -H "Authorization: Bearer enter_Particle_token_here" -d "name=220037000f47343432313031/led" -d "data=/////wAAAP8AAAD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" -d "private=false" -d "ttl=60"
 
     # Set sample interval
-    curl https://api.particle.io/v1/devices/220037000f47343432313031/set_interval -d "arg=5000" -d "access_token=enter_Particle_token_here"
+    curl https://api.particle.io/v1/devices/220037000f47343432313031/set_interval -H "Authorization: Bearer enter_Particle_token_here" -d "arg=5000"
 
     # Set MQTT server
-    curl https://api.particle.io/v1/devices/220037000f47343432313031/set_host -d "arg=192.168.1.116:1883" -d "access_token=enter_Particle_token_here"
+    curl https://api.particle.io/v1/devices/220037000f47343432313031/set_host -H "Authorization: Bearer enter_Particle_token_here" -d "arg=192.168.1.116:1883"
 
     # Display sensors data on the box
-    curl https://api.particle.io/v1/devices/220037000f47343432313031/displayData -d "arg=nothing" -d "access_token=enter_Particle_token_here"
+    curl https://api.particle.io/v1/devices/220037000f47343432313031/displayData -H "Authorization: Bearer enter_Particle_token_here" -d "arg="
 
     ```
 3. Install RabbitMQ with MQTT Plugin on RaspberryPi (Raspian) - [see here for more information](https://www.rabbitmq.com/install-debian.html)
