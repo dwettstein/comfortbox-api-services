@@ -88,6 +88,23 @@
         }
       ]
     },
+    "displayData": {
+      "isStatic": false,
+      "accepts": [
+      ],
+      "returns": {
+        "arg": "response",
+        "type": "string",
+        "root": true,
+        "description": "Response from Particle API"
+      },
+      "description": "Display the sensors data on the ComfortBox",
+      "http": [
+        {
+          "verb": "get"
+        }
+      ]
+    },
     "setInterval": {
       "isStatic": false,
       "accepts": [

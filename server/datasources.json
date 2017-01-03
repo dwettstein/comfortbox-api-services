@@ -47,6 +47,19 @@
       {
         "template": {
           "method": "POST",
+          "url": "https://api.particle.io/v1/devices/{particle_id}/displayData",
+          "form": {
+            "arg": ""
+          },
+          "responsePath": "$"
+        },
+        "functions": {
+          "displayData": ["particle_id"]
+        }
+      },
+      {
+        "template": {
+          "method": "POST",
           "url": "https://api.particle.io/v1/devices/{particle_id}/set_interval",
           "form": {
             "arg": "{interval}"

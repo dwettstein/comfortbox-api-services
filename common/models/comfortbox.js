@@ -1,6 +1,7 @@
 'use strict';
 
 module.exports = function (Comfortbox) {
+
     /**
      * Display a message on a ComfortBox.
      *
@@ -58,6 +59,23 @@ module.exports = function (Comfortbox) {
     };
 
     /**
+     * Display the sensors data on the ComfortBox.
+     *
+     * @param {Function(Error, response)} callback
+     */
+    Comfortbox.prototype.displayData = function (callback) {
+        console.log("Called function displayData");
+
+        var processResponse = function (error, response, body) {
+            var result = processParticleResponse(error, response, body);
+            callback(null, result);
+        };
+
+        console.log("Requesting Particle API with particle_id: " + this.particle_id);
+        Comfortbox.app.dataSources.ParticleAPI.displayData(this.particle_id, processResponse);
+    };
+
+    /**
      * Change the interval for sending messages from the ComfortBox to the MQTT queue.
      *
      * @param {string} interval Interval for sending messages from the ComfortBox to the MQTT queue
@@ -100,11 +118,24 @@ module.exports = function (Comfortbox) {
      * @param {Function(Error, response)} callback
      */
     Comfortbox.prototype.getMetricNames = function (callback) {
-        console.log("Called function getMetricNames");
-
+        console.log("Called function getMetricNames with particle_id: " + this.particle_id);
+        var that = this;
         var processResponse = function (error, response, body) {
-            var result = processKairosDBResponse(error, response, body);
-            callback(null, result);
+            if (error) {
+                console.log('Error received from calling KairosDB API: \n' + error);
+                callback(error);
+                return;
+            }
+            console.log(response);
+
+            var metricsArray = new Array();
+            for (var i = 0, len = response.length; i < len; ++i) {
+                var element = response[i];
+                if (element.search(that.particle_id) !== -1) {
+                    metricsArray.push(element);
+                }
+            }
+            callback(null, metricsArray);
         };
 
         console.log("Requesting KairosDB API");
