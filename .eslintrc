@@ -1,6 +1,15 @@
 {
   "extends": "loopback",
   "rules": {
-    "max-len": "off"
+    "max-len": "off",
+    "no-unused-expressions": "off"
+  },
+  "env": {
+    "mocha": true
+  },
+  "globals": {
+    "expect": true,
+    "app": true,
+    "request": true
   }
 }
