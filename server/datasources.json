@@ -21,13 +21,13 @@
           "method": "POST",
           "url": "https://api.particle.io/v1/devices/events",
           "form": {
-            "name": "{particle_id}/display",
+            "name": "{particleId}/display",
             "data": "{text}"
           },
           "responsePath": "$"
         },
         "functions": {
-          "displayText": ["particle_id", "text"]
+          "displayText": ["particleId", "text"]
         }
       },
       {
@@ -35,52 +35,52 @@
           "method": "POST",
           "url": "https://api.particle.io/v1/devices/events",
           "form": {
-            "name": "{particle_id}/led",
+            "name": "{particleId}/led",
             "data": "{colorsInBase64}"
           },
           "responsePath": "$"
         },
         "functions": {
-          "displayLed": ["particle_id", "colorsInBase64"]
+          "displayLed": ["particleId", "colorsInBase64"]
         }
       },
       {
         "template": {
           "method": "POST",
-          "url": "https://api.particle.io/v1/devices/{particle_id}/displayData",
+          "url": "https://api.particle.io/v1/devices/{particleId}/displayData",
           "form": {
             "arg": ""
           },
           "responsePath": "$"
         },
         "functions": {
-          "displayData": ["particle_id"]
+          "displayData": ["particleId"]
         }
       },
       {
         "template": {
           "method": "POST",
-          "url": "https://api.particle.io/v1/devices/{particle_id}/set_interval",
+          "url": "https://api.particle.io/v1/devices/{particleId}/set_interval",
           "form": {
             "arg": "{interval}"
           },
           "responsePath": "$"
         },
         "functions": {
-          "setInterval": ["particle_id", "interval"]
+          "setInterval": ["particleId", "interval"]
         }
       },
       {
         "template": {
           "method": "POST",
-          "url": "https://api.particle.io/v1/devices/{particle_id}/set_host",
+          "url": "https://api.particle.io/v1/devices/{particleId}/set_host",
           "form": {
             "arg": "{host}:{port}"
           },
           "responsePath": "$"
         },
         "functions": {
-          "setMqttHost": ["particle_id", "host", "port"]
+          "setMqttHost": ["particleId", "host", "port"]
         }
       }
     ]

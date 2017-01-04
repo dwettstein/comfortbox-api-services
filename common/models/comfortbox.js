@@ -15,8 +15,8 @@ module.exports = function(Comfortbox) {
       callback(null, result);
     };
 
-    console.log('Requesting Particle API with particle_id: ' + this.particle_id);
-    Comfortbox.app.dataSources.ParticleAPI.displayText(this.particle_id, text, processResponse);
+    console.log('Requesting Particle API with particleId: ' + this.particleId);
+    Comfortbox.app.dataSources.ParticleAPI.displayText(this.particleId, text, processResponse);
   };
 
   /**
@@ -33,8 +33,8 @@ module.exports = function(Comfortbox) {
       callback(null, result);
     };
 
-    console.log('Requesting Particle API with particle_id: ' + this.particle_id);
-    Comfortbox.app.dataSources.ParticleAPI.displayLed(this.particle_id, colorsInBase64, processResponse);
+    console.log('Requesting Particle API with particleId: ' + this.particleId);
+    Comfortbox.app.dataSources.ParticleAPI.displayLed(this.particleId, colorsInBase64, processResponse);
   };
 
   /**
@@ -53,8 +53,8 @@ module.exports = function(Comfortbox) {
       callback(null, result);
     };
 
-    console.log('Requesting Particle API with particle_id: ' + this.particle_id);
-    Comfortbox.app.dataSources.ParticleAPI.displayLed(this.particle_id, colorsInBase64, processResponse);
+    console.log('Requesting Particle API with particleId: ' + this.particleId);
+    Comfortbox.app.dataSources.ParticleAPI.displayLed(this.particleId, colorsInBase64, processResponse);
   };
 
   /**
@@ -70,8 +70,8 @@ module.exports = function(Comfortbox) {
       callback(null, result);
     };
 
-    console.log('Requesting Particle API with particle_id: ' + this.particle_id);
-    Comfortbox.app.dataSources.ParticleAPI.displayData(this.particle_id, processResponse);
+    console.log('Requesting Particle API with particleId: ' + this.particleId);
+    Comfortbox.app.dataSources.ParticleAPI.displayData(this.particleId, processResponse);
   };
 
   /**
@@ -88,8 +88,8 @@ module.exports = function(Comfortbox) {
       callback(null, result);
     };
 
-    console.log('Requesting Particle API with particle_id: ' + this.particle_id);
-    Comfortbox.app.dataSources.ParticleAPI.setInterval(this.particle_id, interval, processResponse);
+    console.log('Requesting Particle API with particleId: ' + this.particleId);
+    Comfortbox.app.dataSources.ParticleAPI.setInterval(this.particleId, interval, processResponse);
   };
 
   /**
@@ -107,8 +107,8 @@ module.exports = function(Comfortbox) {
       callback(null, result);
     };
 
-    console.log('Requesting Particle API with particle_id: ' + this.particle_id);
-    Comfortbox.app.dataSources.ParticleAPI.setMqttHost(this.particle_id, host, port, processResponse);
+    console.log('Requesting Particle API with particleId: ' + this.particleId);
+    Comfortbox.app.dataSources.ParticleAPI.setMqttHost(this.particleId, host, port, processResponse);
   };
 
   /**
@@ -117,7 +117,7 @@ module.exports = function(Comfortbox) {
    * @param {Function(Error, response)} callback
    */
   Comfortbox.prototype.getMetricNames = function(callback) {
-    console.log('Called function getMetricNames with particle_id: ' + this.particle_id);
+    console.log('Called function getMetricNames with particleId: ' + this.particleId);
     var that = this;
     var processResponse = function(error, response, body) {
       if (error) {
@@ -130,7 +130,7 @@ module.exports = function(Comfortbox) {
       var metricsArray = [];
       for (var i = 0, len = response.length; i < len; ++i) {
         var element = response[i];
-        if (element.search(that.particle_id) !== -1) {
+        if (element.search(that.particleId) !== -1) {
           metricsArray.push(element);
         }
       }

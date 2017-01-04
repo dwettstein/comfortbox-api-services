@@ -10,7 +10,7 @@
     "name": {
       "type": "string"
     },
-    "particle_id": {
+    "particleId": {
       "type": "string",
       "required": true
     }
