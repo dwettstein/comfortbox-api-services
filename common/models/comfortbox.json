@@ -173,6 +173,102 @@
           "verb": "get"
         }
       ]
+    },
+    "getAllComfortboxesInDB": {
+      "isStatic": true,
+      "accepts": [
+      ],
+      "returns": {
+        "arg": "response",
+        "type": "string",
+        "root": true,
+        "description": "Response from KairosDB API"
+      },
+      "description": "Returns a list of Comfortbox ids, which occur in KairosDB.",
+      "http": [
+        {
+          "verb": "get"
+        }
+      ]
+    },
+    "queryMetricData": {
+      "isStatic": true,
+      "accepts": [
+        {
+          "arg": "metricName",
+          "type": "string",
+          "required": true,
+          "description": "The name of the metric."
+        },
+        {
+          "arg": "startRelativeValue",
+          "type": "string",
+          "required": false,
+          "default": "30",
+          "description": "The value for the relative start time. This value will be ignored if startAbsolute is given."
+        },
+        {
+          "arg": "startRelativeUnit",
+          "type": "string",
+          "required": false,
+          "default": "days",
+          "description": "The unit for the relative start time. One of: years, months, weeks, days, hours, minutes, seconds, milliseconds. This value will be ignored if startAbsolute is given."
+        },
+        {
+          "arg": "startAbsolute",
+          "type": "number",
+          "required": false,
+          "description": "The start time in milliseconds since 1.1.1970 (Unix Epoch Timestamp). One of relative or absolute must be given."
+        },
+        {
+          "arg": "endRelativeValue",
+          "type": "string",
+          "required": false,
+          "description": "The value for the relative end time. Default is the current time. This value will be ignored if endAbsolute is given."
+        },
+        {
+          "arg": "endRelativeUnit",
+          "type": "string",
+          "required": false,
+          "description": "The unit for the relative end time. One of: years, months, weeks, days, hours, minutes, seconds, milliseconds. This value will be ignored if endAbsolute is given."
+        },
+        {
+          "arg": "endAbsolute",
+          "type": "number",
+          "required": false,
+          "description": "The end time in milliseconds since 1.1.1970 (Unix Epoch Timestamp). Default is the current time. One of relative or absolute must be given."
+        },
+        {
+          "arg": "aggregatorName",
+          "type": "string",
+          "required": false,
+          "description": "The name of the aggregator function. One of: avg, count, dev, diff, div, first, gaps, last, least_squares, max, min, percentile, rate, sampler, save_as, scale, sum, trim"
+        },
+        {
+          "arg": "aggregatorValue",
+          "type": "string",
+          "required": false,
+          "description": "The value for the aggregator sampling. Mandatory if aggregatorName is given."
+        },
+        {
+          "arg": "aggregatorUnit",
+          "type": "string",
+          "required": false,
+          "description": "The unit for the aggregator sampling. One of: years, months, weeks, days, hours, minutes, seconds, milliseconds. Mandatory if aggregatorName is given."
+        }
+      ],
+      "returns": {
+        "arg": "response",
+        "type": "string",
+        "root": true,
+        "description": "Response from KairosDB API"
+      },
+      "description": "Returns a list of values from the given metric.",
+      "http": [
+        {
+          "verb": "get"
+        }
+      ]
     }
   }
 }

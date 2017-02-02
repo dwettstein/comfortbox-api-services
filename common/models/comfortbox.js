@@ -1,6 +1,9 @@
 'use strict';
 
 module.exports = function(Comfortbox) {
+  var allowedTimeUnits = ['years', 'months', 'weeks', 'days', 'hours', 'minutes', 'seconds', 'milliseconds'];
+  var allowedAggregators = ['avg', 'count', 'dev', 'diff', 'div', 'first', 'gaps', 'last', 'least_squares', 'max', 'min', 'percentile', 'rate', 'sampler', 'save_as', 'scale', 'sum', 'trim'];
+
   /**
    * Display a message on a ComfortBox.
    *
@@ -140,22 +143,96 @@ module.exports = function(Comfortbox) {
     console.log('Requesting KairosDB API');
     Comfortbox.app.dataSources.KairosDB.metricnames(processResponse);
   };
+
+  /**
+   * Get a list of all Comfortbox ids, which occur in KairosDB.
+   *
+   * @param {Function(Error, response)} callback
+   */
+  Comfortbox.getAllComfortboxesInDB = function(callback) {
+    console.log('Called function getAllComfortboxesInDB');
+    var that = this;
+
+    var processResponse = function(error, response, body) {
+      if (error) {
+        console.log('Error received from calling KairosDB API: \n' + error);
+        callback(error);
+        return;
+      }
+      console.log(response);
+
+      var comfortboxIds = [];
+      for (var i = 0, len = response.length; i < len; ++i) {
+        var element = response[i];
+        if (element.startsWith('comfort')) {
+          var comfortboxId = element.split('.')[1];
+          if (comfortboxIds.indexOf(comfortboxId) === -1) {
+            comfortboxIds.push(comfortboxId);
+          }
+        }
+      }
+      callback(null, comfortboxIds);
+    };
+
+    console.log('Requesting KairosDB API');
+    Comfortbox.app.dataSources.KairosDB.metricnames(processResponse);
+  };
+
+  /**
+   * Get a list of values from the given metric.
+   *
+   * @param {Function(Error, response)} callback
+   */
+  Comfortbox.queryMetricData = function(metricName, startRelativeValue, startRelativeUnit, startAbsolute, endRelativeValue, endRelativeUnit, endAbsolute, aggregatorName, aggregatorValue, aggregatorUnit, callback) {
+    console.log('Called function queryMetricData with params ' +
+                'metricName: ' + metricName +
+                ', startRelativeValue: ' + startRelativeValue +
+                ', startRelativeUnit: ' + startRelativeUnit +
+                ', startAbsolute: ' + startAbsolute +
+                ', endRelativeValue: ' + endRelativeValue +
+                ', endRelativeUnit: ' + endRelativeUnit +
+                ', endAbsolute: ' + endAbsolute +
+                ', aggregatorName: ' + aggregatorName +
+                ', aggregatorValue: ' + aggregatorValue +
+                ', aggregatorUnit: ' + aggregatorUnit);
+    var that = this;
+
+    if (typeof aggregatorName != 'undefined' && aggregatorName !== null) {
+      if (allowedAggregators.indexOf(aggregatorName) === -1) {
+        throw 'Unknown aggregator name given as input.';
+      }
+      if (allowedTimeUnits.indexOf(aggregatorUnit) === -1) {
+        throw 'Unknown aggregator unit given as input.';
+      }
+      var metrics = [{name: metricName, aggregators: [{name: aggregatorName, sampling: {value: aggregatorValue, unit: aggregatorUnit}}]}];
+    } else {
+      var metrics = [{name: metricName}];
+    }
+
+    var startRelative = startAbsolute ? null : {value: startRelativeValue, unit: startRelativeUnit};
+    if (endAbsolute || (endRelativeValue && endRelativeUnit)) {
+      var endRelative = endAbsolute ? null : {value: endRelativeValue, unit: endRelativeUnit};
+    }
+    var cacheTime = 0;
+
+    var processResponse = function(error, response, body) {
+      if (error) {
+        console.log('Error received from calling KairosDB API: \n' + error);
+        callback(error);
+        return;
+      }
+      console.log(response[0]);
+
+      callback(null, response[0]);
+    };
+
+    console.log('Requesting KairosDB API');
+    Comfortbox.app.dataSources.KairosDB.queryMetrics(metrics, startRelative, startAbsolute, endRelative, endAbsolute, cacheTime, processResponse);
+  };
 };
 
 // *****************************************************************************
 // Helper functions
-
-var processKairosDBResponse = function(error, response, body) {
-  console.log('Processing response from KairosDB API.');
-  console.log(response);
-  if (error) {
-    console.log('Error received from calling KairosDB API: \n' + error);
-    return error;
-  }
-
-  // TODO: parse KairosDB API response
-  return response;
-};
 
 var processParticleResponse = function(error, response, body) {
   console.log('Processing response from Particle API.');
