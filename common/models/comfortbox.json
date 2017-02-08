@@ -1,6 +1,6 @@
 {
-  "name": "comfortbox",
-  "plural": "comfortboxes",
+  "name": "ComfortBox",
+  "plural": "ComfortBoxes",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {

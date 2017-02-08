@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function(Comfortbox) {
+module.exports = function(ComfortBox) {
   var allowedTimeUnits = ['years', 'months', 'weeks', 'days', 'hours', 'minutes', 'seconds', 'milliseconds'];
   var allowedAggregators = ['avg', 'count', 'dev', 'diff', 'div', 'first', 'gaps', 'last', 'least_squares', 'max', 'min', 'percentile', 'rate', 'sampler', 'save_as', 'scale', 'sum', 'trim'];
 
@@ -10,7 +10,7 @@ module.exports = function(Comfortbox) {
    * @param {string} text Text to display on the ComfortBox
    * @param {Function(Error, response)} callback
    */
-  Comfortbox.prototype.displayText = function(text, callback) {
+  ComfortBox.prototype.displayText = function(text, callback) {
     console.log('Called function displayText with param text: ' + text);
 
     var processResponse = function(error, response, body) {
@@ -19,7 +19,7 @@ module.exports = function(Comfortbox) {
     };
 
     console.log('Requesting Particle API with particleId: ' + this.particleId);
-    Comfortbox.app.dataSources.ParticleAPI.displayText(this.particleId, text, processResponse);
+    ComfortBox.app.dataSources.ParticleAPI.displayText(this.particleId, text, processResponse);
   };
 
   /**
@@ -28,7 +28,7 @@ module.exports = function(Comfortbox) {
    * @param {string} colorsInBase64 Colors to display on the ComfortBox formatted in Base64
    * @param {Function(Error, response)} callback
    */
-  Comfortbox.prototype.displayLed = function(colorsInBase64, callback) {
+  ComfortBox.prototype.displayLed = function(colorsInBase64, callback) {
     console.log('Called function displayLed with param colorsInBase64: ' + colorsInBase64);
 
     var processResponse = function(error, response, body) {
@@ -37,7 +37,7 @@ module.exports = function(Comfortbox) {
     };
 
     console.log('Requesting Particle API with particleId: ' + this.particleId);
-    Comfortbox.app.dataSources.ParticleAPI.displayLed(this.particleId, colorsInBase64, processResponse);
+    ComfortBox.app.dataSources.ParticleAPI.displayLed(this.particleId, colorsInBase64, processResponse);
   };
 
   /**
@@ -46,7 +46,7 @@ module.exports = function(Comfortbox) {
    * @param {string} colorInHex Color to display on the ComfortBox formatted in HEX
    * @param {Function(Error, response)} callback
    */
-  Comfortbox.prototype.displayHexColor = function(colorInHex, callback) {
+  ComfortBox.prototype.displayHexColor = function(colorInHex, callback) {
     console.log('Called function displayHexColor with param colorInHex: ' + colorInHex);
     var base64Color = convertHexToBase64(colorInHex);
     var colorsInBase64 = multiplyBase64Color(base64Color, 24);
@@ -57,7 +57,7 @@ module.exports = function(Comfortbox) {
     };
 
     console.log('Requesting Particle API with particleId: ' + this.particleId);
-    Comfortbox.app.dataSources.ParticleAPI.displayLed(this.particleId, colorsInBase64, processResponse);
+    ComfortBox.app.dataSources.ParticleAPI.displayLed(this.particleId, colorsInBase64, processResponse);
   };
 
   /**
@@ -65,7 +65,7 @@ module.exports = function(Comfortbox) {
    *
    * @param {Function(Error, response)} callback
    */
-  Comfortbox.prototype.displayData = function(callback) {
+  ComfortBox.prototype.displayData = function(callback) {
     console.log('Called function displayData');
 
     var processResponse = function(error, response, body) {
@@ -74,7 +74,7 @@ module.exports = function(Comfortbox) {
     };
 
     console.log('Requesting Particle API with particleId: ' + this.particleId);
-    Comfortbox.app.dataSources.ParticleAPI.displayData(this.particleId, processResponse);
+    ComfortBox.app.dataSources.ParticleAPI.displayData(this.particleId, processResponse);
   };
 
   /**
@@ -83,7 +83,7 @@ module.exports = function(Comfortbox) {
    * @param {string} interval Interval for sending messages from the ComfortBox to the MQTT queue
    * @param {Function(Error, response)} callback
    */
-  Comfortbox.prototype.setInterval = function(interval, callback) {
+  ComfortBox.prototype.setInterval = function(interval, callback) {
     console.log('Called function setInterval with param interval: ' + interval);
 
     var processResponse = function(error, response, body) {
@@ -92,7 +92,7 @@ module.exports = function(Comfortbox) {
     };
 
     console.log('Requesting Particle API with particleId: ' + this.particleId);
-    Comfortbox.app.dataSources.ParticleAPI.setInterval(this.particleId, interval, processResponse);
+    ComfortBox.app.dataSources.ParticleAPI.setInterval(this.particleId, interval, processResponse);
   };
 
   /**
@@ -102,7 +102,7 @@ module.exports = function(Comfortbox) {
    * @param {string} port Port of the MQTT message queue
    * @param {Function(Error, response)} callback
    */
-  Comfortbox.prototype.setMqttHost = function(host, port, callback) {
+  ComfortBox.prototype.setMqttHost = function(host, port, callback) {
     console.log('Called function setMqttHost with params host: ' + host + ', port: ' + port);
 
     var processResponse = function(error, response, body) {
@@ -111,7 +111,7 @@ module.exports = function(Comfortbox) {
     };
 
     console.log('Requesting Particle API with particleId: ' + this.particleId);
-    Comfortbox.app.dataSources.ParticleAPI.setMqttHost(this.particleId, host, port, processResponse);
+    ComfortBox.app.dataSources.ParticleAPI.setMqttHost(this.particleId, host, port, processResponse);
   };
 
   /**
@@ -119,7 +119,7 @@ module.exports = function(Comfortbox) {
    *
    * @param {Function(Error, response)} callback
    */
-  Comfortbox.prototype.getMetricNames = function(callback) {
+  ComfortBox.prototype.getMetricNames = function(callback) {
     console.log('Called function getMetricNames with particleId: ' + this.particleId);
     var that = this;
     var processResponse = function(error, response, body) {
@@ -141,7 +141,7 @@ module.exports = function(Comfortbox) {
     };
 
     console.log('Requesting KairosDB API');
-    Comfortbox.app.dataSources.KairosDB.metricnames(processResponse);
+    ComfortBox.app.dataSources.KairosDB.metricnames(processResponse);
   };
 
   /**
@@ -149,7 +149,7 @@ module.exports = function(Comfortbox) {
    *
    * @param {Function(Error, response)} callback
    */
-  Comfortbox.getAllComfortboxesInDB = function(callback) {
+  ComfortBox.getAllComfortboxesInDB = function(callback) {
     console.log('Called function getAllComfortboxesInDB');
     var that = this;
 
@@ -175,7 +175,7 @@ module.exports = function(Comfortbox) {
     };
 
     console.log('Requesting KairosDB API');
-    Comfortbox.app.dataSources.KairosDB.metricnames(processResponse);
+    ComfortBox.app.dataSources.KairosDB.metricnames(processResponse);
   };
 
   /**
@@ -183,7 +183,7 @@ module.exports = function(Comfortbox) {
    *
    * @param {Function(Error, response)} callback
    */
-  Comfortbox.queryMetricData = function(metricName, startRelativeValue, startRelativeUnit, startAbsolute, endRelativeValue, endRelativeUnit, endAbsolute, aggregatorName, aggregatorValue, aggregatorUnit, callback) {
+  ComfortBox.queryMetricData = function(metricName, startRelativeValue, startRelativeUnit, startAbsolute, endRelativeValue, endRelativeUnit, endAbsolute, aggregatorName, aggregatorValue, aggregatorUnit, callback) {
     console.log('Called function queryMetricData with params ' +
                 'metricName: ' + metricName +
                 ', startRelativeValue: ' + startRelativeValue +
@@ -227,7 +227,7 @@ module.exports = function(Comfortbox) {
     };
 
     console.log('Requesting KairosDB API');
-    Comfortbox.app.dataSources.KairosDB.queryMetrics(metrics, startRelative, startAbsolute, endRelative, endAbsolute, cacheTime, processResponse);
+    ComfortBox.app.dataSources.KairosDB.queryMetrics(metrics, startRelative, startAbsolute, endRelative, endAbsolute, cacheTime, processResponse);
   };
 };
 

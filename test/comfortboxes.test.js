@@ -1,15 +1,15 @@
 'use strict';
 
-describe('/comfortboxes', function() {
-  var Comfortbox;
+describe('/ComfortBoxes', function() {
+  var ComfortBox;
 
   before(function(done) {
-    Comfortbox = app.models.Comfortbox;
-    Comfortbox.upsert({id: 1, name: 'CB7', particleId: '220037000f47343432313031'}, function() { done(); });
+    ComfortBox = app.models.ComfortBox;
+    ComfortBox.upsert({id: 1, name: 'CB7', particleId: '220037000f47343432313031'}, function() { done(); });
   });
 
-  it('should get one existing comfortbox', function(done) {
-    request.get('/api/comfortboxes').expect(function(res) {
+  it('should get one existing ComfortBox', function(done) {
+    request.get('/api/ComfortBoxes').expect(function(res) {
       expect(res.statusCode).to.be.equal(200);
       var resultObj = res.body;
       expect(Array.isArray(resultObj)).to.be.true;
@@ -18,8 +18,8 @@ describe('/comfortboxes', function() {
     }).end(done);
   });
 
-  it('should create a new comfortbox', function(done) {
-    request.post('/api/comfortboxes').send({id: 2, name: 'CB8', particleId: '000000000000000000000000'}).expect(function(res) {
+  it('should create a new ComfortBox', function(done) {
+    request.post('/api/ComfortBoxes').send({id: 2, name: 'CB8', particleId: '000000000000000000000000'}).expect(function(res) {
       expect(res.statusCode).to.be.equal(200);
       var resultObj = res.body;
       expect(resultObj).to.be.ok;
@@ -27,8 +27,8 @@ describe('/comfortboxes', function() {
     }).end(done);
   });
 
-  it('should get two existing comfortbox', function(done) {
-    request.get('/api/comfortboxes').expect(function(res) {
+  it('should get two existing ComfortBoxes', function(done) {
+    request.get('/api/ComfortBoxes').expect(function(res) {
       expect(res.statusCode).to.be.equal(200);
       var resultObj = res.body;
       expect(Array.isArray(resultObj)).to.be.true;
@@ -36,8 +36,8 @@ describe('/comfortboxes', function() {
     }).end(done);
   });
 
-  it('should fail create a new comfortbox with empty particleId', function(done) {
-    request.post('/api/comfortboxes').send({id: 3, name: 'CB9', particleId: ''}).expect(function(res) {
+  it('should fail create a new ComfortBox with empty particleId', function(done) {
+    request.post('/api/ComfortBoxes').send({id: 3, name: 'CB9', particleId: ''}).expect(function(res) {
       expect(res.statusCode).to.be.equal(422);
       var resultObj = res.body;
       expect(resultObj.error.name).to.be.equal('ValidationError');

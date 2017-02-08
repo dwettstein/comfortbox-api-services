@@ -14,7 +14,8 @@
     ]
   },
   "User": {
-    "dataSource": "db"
+    "dataSource": "db",
+    "public": false
   },
   "AccessToken": {
     "dataSource": "db",
@@ -32,8 +33,21 @@
     "dataSource": "db",
     "public": false
   },
-  "comfortbox": {
+  "ComfortBox": {
     "dataSource": "db",
-    "public": true
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "createChangeStream": false,
+          "patchOrCreate": false,
+          "replaceById": false,
+          "replaceOrCreate": false,
+          "updateAll": false,
+          "upsert": false,
+          "upsertWithWhere": false
+        }
+      }
+    }
   }
 }
