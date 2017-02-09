@@ -23,6 +23,24 @@ module.exports = function(ComfortBox) {
   };
 
   /**
+   * Check if the ComfortBox is connected to Particle Cloud.
+   *
+   * @param {Function(Error, response)} callback
+   */
+  ComfortBox.prototype.isOnline = function(callback) {
+    console.log('Called function isOnline');
+
+    var processResponse = function(error, response, body) {
+      var result = processParticleResponse(error, response, body);
+      var status = {id: result.id, name: result.name, connected: result.connected, lastHeard: result.last_heard, lastIp: result.last_ip_address};
+      callback(null, status);
+    };
+
+    console.log('Requesting Particle API with particleId: ' + this.particleId);
+    ComfortBox.app.dataSources.ParticleAPI.getDeviceInfo(this.particleId, processResponse);
+  };
+
+  /**
    * Display various LED colors on a ComfortBox.
    *
    * @param {string} colorsInBase64 Colors to display on the ComfortBox formatted in Base64
@@ -112,6 +130,24 @@ module.exports = function(ComfortBox) {
 
     console.log('Requesting Particle API with particleId: ' + this.particleId);
     ComfortBox.app.dataSources.ParticleAPI.setMqttHost(this.particleId, host, port, processResponse);
+  };
+
+  /**
+   * Change if the ComfortBox should show the sensor's data regularly or not.
+   *
+   * @param {boolean} Boolean whether to show the data regularly or not (true or false)
+   * @param {Function(Error, response)} callback
+   */
+  ComfortBox.prototype.setShowDataRegularly = function(doShowDataRegularly, callback) {
+    console.log('Called function setShowDataRegularly with params doShowDataRegularly: ' + doShowDataRegularly);
+
+    var processResponse = function(error, response, body) {
+      var result = processParticleResponse(error, response, body);
+      callback(null, result);
+    };
+
+    console.log('Requesting Particle API with particleId: ' + this.particleId);
+    ComfortBox.app.dataSources.ParticleAPI.setShowDataRegularly(this.particleId, doShowDataRegularly, processResponse);
   };
 
   /**

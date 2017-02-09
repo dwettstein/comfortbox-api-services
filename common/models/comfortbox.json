@@ -19,6 +19,23 @@
   "relations": {},
   "acls": [],
   "methods": {
+    "isOnline": {
+      "isStatic": false,
+      "accepts": [
+      ],
+      "returns": {
+        "arg": "response",
+        "type": "string",
+        "root": true,
+        "description": "Response from Particle API"
+      },
+      "description": "Check if the ComfortBox is connected to Particle Cloud",
+      "http": [
+        {
+          "verb": "get"
+        }
+      ]
+    },
     "displayText": {
       "isStatic": false,
       "accepts": [
@@ -101,7 +118,7 @@
       "description": "Display the sensors data on the ComfortBox",
       "http": [
         {
-          "verb": "get"
+          "verb": "post"
         }
       ]
     },
@@ -151,6 +168,30 @@
         "description": "Response from Particle API"
       },
       "description": "Change the MQTT host used by a ComfortBox",
+      "http": [
+        {
+          "verb": "post"
+        }
+      ]
+    },
+    "setShowDataRegularly": {
+      "isStatic": false,
+      "accepts": [
+        {
+          "arg": "doShowDataRegularly",
+          "type": "boolean",
+          "required": true,
+          "default": false,
+          "description": "Boolean whether to show the data regularly or not (true or false)"
+        }
+      ],
+      "returns": {
+        "arg": "response",
+        "type": "string",
+        "root": true,
+        "description": "Response from Particle API"
+      },
+      "description": "Change if the ComfortBox should show the sensor's data regularly or not",
       "http": [
         {
           "verb": "post"

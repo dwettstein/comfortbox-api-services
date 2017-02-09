@@ -46,8 +46,18 @@
       },
       {
         "template": {
+          "method": "GET",
+          "url": "https://api.particle.io/v1/devices/{particleId}",
+          "responsePath": "$"
+        },
+        "functions": {
+          "getDeviceInfo": ["particleId"]
+        }
+      },
+      {
+        "template": {
           "method": "POST",
-          "url": "https://api.particle.io/v1/devices/{particleId}/displayData",
+          "url": "https://api.particle.io/v1/devices/{particleId}/display_data",
           "form": {
             "arg": ""
           },
@@ -81,6 +91,19 @@
         },
         "functions": {
           "setMqttHost": ["particleId", "host", "port"]
+        }
+      },
+      {
+        "template": {
+          "method": "POST",
+          "url": "https://api.particle.io/v1/devices/{particleId}/set_showdata",
+          "form": {
+            "arg": "{doShowDataRegularly}"
+          },
+          "responsePath": "$"
+        },
+        "functions": {
+          "setShowDataRegularly": ["particleId", "doShowDataRegularly"]
         }
       }
     ]
