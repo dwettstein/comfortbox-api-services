@@ -307,7 +307,30 @@
       "description": "Returns a list of values from the given metric.",
       "http": [
         {
-          "verb": "get"
+          "verb": "post"
+        }
+      ]
+    },
+    "queryMetricDataByJson": {
+      "isStatic": true,
+      "accepts": [
+        {
+          "arg": "query",
+          "type": "string",
+          "required": true,
+          "description": "The query in JSON format. See https://kairosdb.github.io/docs/build/html/restapi/QueryMetrics.html for more info."
+        }
+      ],
+      "returns": {
+        "arg": "response",
+        "type": "string",
+        "root": true,
+        "description": "Response from KairosDB API"
+      },
+      "description": "Returns a list of values from the given query.",
+      "http": [
+        {
+          "verb": "post"
         }
       ]
     }

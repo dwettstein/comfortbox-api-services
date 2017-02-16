@@ -142,10 +142,21 @@
             "end_absolute": "{endAbsolute}",
             "cache_time": "{cacheTime}"
           },
-          "responsePath": "$.queries[0].results.*"
+          "responsePath": "$.queries[0]"
         },
         "functions": {
           "queryMetrics": ["metrics", "startRelative", "startAbsolute", "endRelative", "endAbsolute", "cacheTime"]
+        }
+      },
+      {
+        "template": {
+          "method": "POST",
+          "url": "http://localhost:8080/api/v1/datapoints/query",
+          "body": "{query}",
+          "responsePath": "$.queries[0]"
+        },
+        "functions": {
+          "queryMetricsByJson": ["query"]
         }
       }
     ]

@@ -217,6 +217,16 @@ module.exports = function(ComfortBox) {
   /**
    * Get a list of values from the given metric.
    *
+   * @param {string} metricName The name of the metric.
+   * @param {string} startRelativeValue The value for the relative start time. This value will be ignored if startAbsolute is given.
+   * @param {string} startRelativeUnit The unit for the relative start time. One of: years, months, weeks, days, hours, minutes, seconds, milliseconds. This value will be ignored if startAbsolute is given.
+   * @param {number} startAbsolute The start time in milliseconds since 1.1.1970 (Unix Epoch Timestamp). One of relative or absolute must be given.
+   * @param {string} endRelativeValue
+   * @param {string} endRelativeUnit
+   * @param {number} endAbsolute
+   * @param {string} aggregatorName The name of the aggregator function. One of: avg, count, dev, diff, div, first, gaps, last, least_squares, max, min, percentile, rate, sampler, save_as, scale, sum, trim
+   * @param {string} aggregatorValue The value for the aggregator sampling. Mandatory if aggregatorName is given.
+   * @param {string} aggregatorUnit The unit for the aggregator sampling. One of: years, months, weeks, days, hours, minutes, seconds, milliseconds. Mandatory if aggregatorName is given.
    * @param {Function(Error, response)} callback
    */
   ComfortBox.queryMetricData = function(metricName, startRelativeValue, startRelativeUnit, startAbsolute, endRelativeValue, endRelativeUnit, endAbsolute, aggregatorName, aggregatorValue, aggregatorUnit, callback) {
@@ -264,6 +274,32 @@ module.exports = function(ComfortBox) {
 
     console.log('Requesting KairosDB API');
     ComfortBox.app.dataSources.KairosDB.queryMetrics(metrics, startRelative, startAbsolute, endRelative, endAbsolute, cacheTime, processResponse);
+  };
+
+  /**
+   * Get a list of values from the given query.
+   *
+   * @param {string} query The query in JSON format. See https://kairosdb.github.io/docs/build/html/restapi/QueryMetrics.html for more info.
+   * @param {Function(Error, response)} callback
+   */
+  ComfortBox.queryMetricDataByJson = function(query, callback) {
+    console.log('Called function queryMetricDataByJson with params ' +
+                'query: ' + query);
+    var queryJson = JSON.parse(query);
+
+    var processResponse = function(error, response, body) {
+      if (error) {
+        console.log('Error received from calling KairosDB API: \n' + error);
+        callback(error);
+        return;
+      }
+      console.log(response[0]);
+
+      callback(null, response[0]);
+    };
+
+    console.log('Requesting KairosDB API');
+    ComfortBox.app.dataSources.KairosDB.queryMetricsByJson(queryJson, processResponse);
   };
 };
 
