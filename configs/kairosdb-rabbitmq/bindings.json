@@ -78,88 +78,46 @@
       "queueAutoDelete": "false"
     },
     {
-      "queueName": "comfort.220037000f47343432313031.bat",
-      "queueDurable": "true",
-      "queueExclusive": "false",
-      "queueAutoDelete": "false"
+      "queueName": "comfort.220037000f47343432313031.bat"
     },
     {
-      "queueName": "comfort.220037000f47343432313031.co2",
-      "queueDurable": "true",
-      "queueExclusive": "false",
-      "queueAutoDelete": "false"
+      "queueName": "comfort.220037000f47343432313031.co2"
     },
     {
-      "queueName": "comfort.220037000f47343432313031.event.button.0",
-      "queueDurable": "true",
-      "queueExclusive": "false",
-      "queueAutoDelete": "false"
+      "queueName": "comfort.220037000f47343432313031.event.button.0"
     },
     {
-      "queueName": "comfort.220037000f47343432313031.event.button.1",
-      "queueDurable": "true",
-      "queueExclusive": "false",
-      "queueAutoDelete": "false"
+      "queueName": "comfort.220037000f47343432313031.event.button.1"
     },
     {
-      "queueName": "comfort.220037000f47343432313031.event.dtap",
-      "queueDurable": "true",
-      "queueExclusive": "false",
-      "queueAutoDelete": "false"
+      "queueName": "comfort.220037000f47343432313031.event.dtap"
     },
     {
-      "queueName": "comfort.220037000f47343432313031.event.tap",
-      "queueDurable": "true",
-      "queueExclusive": "false",
-      "queueAutoDelete": "false"
+      "queueName": "comfort.220037000f47343432313031.event.tap"
     },
     {
-      "queueName": "comfort.220037000f47343432313031.hpa",
-      "queueDurable": "true",
-      "queueExclusive": "false",
-      "queueAutoDelete": "false"
+      "queueName": "comfort.220037000f47343432313031.hpa"
     },
     {
-      "queueName": "comfort.220037000f47343432313031.hum",
-      "queueDurable": "true",
-      "queueExclusive": "false",
-      "queueAutoDelete": "false"
+      "queueName": "comfort.220037000f47343432313031.hum"
     },
     {
-      "queueName": "comfort.220037000f47343432313031.lux",
-      "queueDurable": "true",
-      "queueExclusive": "false",
-      "queueAutoDelete": "false"
+      "queueName": "comfort.220037000f47343432313031.lux"
     },
     {
-      "queueName": "comfort.220037000f47343432313031.offline",
-      "queueDurable": "true",
-      "queueExclusive": "false",
-      "queueAutoDelete": "false"
+      "queueName": "comfort.220037000f47343432313031.offline"
     },
     {
-      "queueName": "comfort.220037000f47343432313031.online",
-      "queueDurable": "true",
-      "queueExclusive": "false",
-      "queueAutoDelete": "false"
+      "queueName": "comfort.220037000f47343432313031.online"
     },
     {
-      "queueName": "comfort.220037000f47343432313031.sound",
-      "queueDurable": "true",
-      "queueExclusive": "false",
-      "queueAutoDelete": "false"
+      "queueName": "comfort.220037000f47343432313031.sound"
     },
     {
-      "queueName": "comfort.220037000f47343432313031.temp",
-      "queueDurable": "true",
-      "queueExclusive": "false",
-      "queueAutoDelete": "false"
+      "queueName": "comfort.220037000f47343432313031.temp"
     },
     {
-      "queueName": "comfort.220037000f47343432313031.wind",
-      "queueDurable": "true",
-      "queueExclusive": "false",
-      "queueAutoDelete": "false"
+      "queueName": "comfort.220037000f47343432313031.wind"
     }
   ]
 }
