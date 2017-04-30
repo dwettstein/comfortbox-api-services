@@ -20,5 +20,11 @@
     "cors": false,
     "handleErrors": false
   },
-  "legacyExplorer": false
+  "legacyExplorer": false,
+  "rabbitMqServer": {
+    "host": "localhost",
+    "port": 5672,
+    "username": "sa-comfortbox",
+    "password": "change_to_your_password"
+  }
 }

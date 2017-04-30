@@ -8,10 +8,6 @@
       "exchangeInternal" : "false",
       "binds": [
         {
-          "bindingkey": "comfort.*.online",
-          "queueName": "comfort.*.online"
-        },
-        {
           "bindingkey": "comfort.220037000f47343432313031.bat",
           "queueName": "comfort.220037000f47343432313031.bat"
         },
@@ -71,12 +67,6 @@
     }
   ],
   "queues": [
-    {
-      "queueName": "comfort.*.online",
-      "queueDurable": "true",
-      "queueExclusive": "false",
-      "queueAutoDelete": "false"
-    },
     {
       "queueName": "comfort.220037000f47343432313031.bat"
     },

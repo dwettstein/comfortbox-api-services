@@ -18,7 +18,8 @@
     "loopback-connector-rest": "^2.1.0",
     "loopback-datasource-juggler": "^2.39.0",
     "serve-favicon": "^2.0.1",
-    "strong-error-handler": "^1.0.1"
+    "strong-error-handler": "^1.0.1",
+    "amqplib": "^0.5.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",
