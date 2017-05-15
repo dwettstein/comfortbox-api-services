@@ -26,5 +26,6 @@
     "port": 5672,
     "username": "sa-comfortbox",
     "password": "change_to_your_password"
-  }
+  },
+  "pathToKairosBindings": "/opt/kairosdb/conf/bindings.json"
 }

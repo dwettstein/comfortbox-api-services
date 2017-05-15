@@ -157,7 +157,7 @@ module.exports = function(ComfortBox) {
    */
   ComfortBox.prototype.getMetricNames = function(callback) {
     console.log('Called function getMetricNames with particleId: ' + this.particleId);
-    var that = this;
+
     var processResponse = function(error, response, body) {
       if (error) {
         console.log('Error received from calling KairosDB API: \n' + error);
@@ -169,12 +169,12 @@ module.exports = function(ComfortBox) {
       var metricsArray = [];
       for (var i = 0, len = response.length; i < len; ++i) {
         var element = response[i];
-        if (element.search(that.particleId) !== -1) {
+        if (element.search(this.particleId) !== -1) {
           metricsArray.push(element);
         }
       }
       callback(null, metricsArray);
-    };
+    }.bind(this);
 
     console.log('Requesting KairosDB API');
     ComfortBox.app.dataSources.KairosDB.metricnames(processResponse);
@@ -187,7 +187,6 @@ module.exports = function(ComfortBox) {
    */
   ComfortBox.getAllComfortboxesInDB = function(callback) {
     console.log('Called function getAllComfortboxesInDB');
-    var that = this;
 
     var processResponse = function(error, response, body) {
       if (error) {
@@ -241,7 +240,6 @@ module.exports = function(ComfortBox) {
                 ', aggregatorName: ' + aggregatorName +
                 ', aggregatorValue: ' + aggregatorValue +
                 ', aggregatorUnit: ' + aggregatorUnit);
-    var that = this;
 
     if (typeof aggregatorName != 'undefined' && aggregatorName !== null) {
       if (allowedAggregators.indexOf(aggregatorName) === -1) {
