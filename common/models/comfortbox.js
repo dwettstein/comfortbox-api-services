@@ -241,6 +241,7 @@ module.exports = function(ComfortBox) {
                 ', aggregatorValue: ' + aggregatorValue +
                 ', aggregatorUnit: ' + aggregatorUnit);
 
+    var metrics;
     if (typeof aggregatorName != 'undefined' && aggregatorName !== null) {
       if (allowedAggregators.indexOf(aggregatorName) === -1) {
         throw 'Unknown aggregator name given as input.';
@@ -248,9 +249,9 @@ module.exports = function(ComfortBox) {
       if (allowedTimeUnits.indexOf(aggregatorUnit) === -1) {
         throw 'Unknown aggregator unit given as input.';
       }
-      var metrics = [{name: metricName, aggregators: [{name: aggregatorName, sampling: {value: aggregatorValue, unit: aggregatorUnit}}]}];
+      metrics = [{name: metricName, aggregators: [{name: aggregatorName, sampling: {value: aggregatorValue, unit: aggregatorUnit}}]}];
     } else {
-      var metrics = [{name: metricName}];
+      metrics = [{name: metricName}];
     }
 
     var startRelative = startAbsolute ? null : {value: startRelativeValue, unit: startRelativeUnit};

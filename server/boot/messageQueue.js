@@ -4,8 +4,8 @@ var amqp = require('amqplib/callback_api');
 var fs = require('fs');
 
 module.exports = function(server, callback) {
-  if (typeof server.locals.settings.rabbitMqServer == 'undefined' || server.locals.settings.rabbitMqServer === null) {
-    console.warn('RabbitMQ server config not available. Skip messageQueue boot script.');
+  if (typeof server.locals.settings.rabbitMqServer == 'undefined' || server.locals.settings.rabbitMqServer === null || !fs.existsSync(server.locals.settings.pathToKairosBindings)) {
+    console.warn('RabbitMQ server config or bindings file not available. Skip messageQueue boot script.');
     callback();
     return;
   }
@@ -56,7 +56,7 @@ function handleMsg(msg) {
       result.id = this.particleId;
     }
 
-    if (typeof result.name == 'undefined' || result.name === null) {
+    if (typeof result.name == 'undefined' || result.name === null || result.name.match(/( e|E)rror/)) {
       console.warn('[MQ] ParticleId in received routingKey does not exist in Particle! Unable to get the device name.');
       result.name = 'unknown';
     }
@@ -85,21 +85,58 @@ function handleMsg(msg) {
 
 function updateKairosBindingsFile(pathToKairosBindings, particleId) {
   console.log('Update Kairos bindings.json file for particleId: ' + particleId + '. pathToKairosBindings: ' + pathToKairosBindings);
+
   // Read file to json
   try {
     var bindingsContent = fs.readFileSync(pathToKairosBindings, 'utf8');
-  } catch (error) {
-    console.error('Failed to read file from path \'' + pathToKairosBindings + '\'. Error: ' + error);
+  } catch (err) {
+    console.error('Failed to read file from path \'' + pathToKairosBindings + '\'. Error: ' + err);
     return false;
   }
+
+  // Copy file to keep a backup
   try {
-    var bindingsJson = JSON.parse(bindingsContent);
-  } catch (error) {
-    console.error('Failed to parse JSON in file from path \'' + pathToKairosBindings + '\'. Error: ' + error);
+    fs.writeFileSync(pathToKairosBindings + '.bak', bindingsContent, {encoding: 'utf8'});
+  } catch (err) {
+    console.error('An error occurred while create the backup file for \'' + pathToKairosBindings + '\'. Error: ' + err);
+    return false;
   }
 
-  console.log(bindingsJson.bindings[0].binds);
-  console.log(bindingsJson.queues);
+  // Parse content to JSON
+  try {
+    var bindingsJson = JSON.parse(bindingsContent);
+  } catch (err) {
+    console.error('Failed to parse JSON in file from path \'' + pathToKairosBindings + '\'. Error: ' + err);
+    return false;
+  }
+
+  // Add new queues and bindings
+  var queueNames = ['bat', 'co2', 'event.button.0', 'event.button.1', 'event.dtap', 'event.tap', 'hpa', 'hum', 'lux', 'offline', 'online', 'sound', 'temp', 'wind'];
+
+  queueNames.forEach(function(element) {
+    var queueToAdd = 'comfort.' + particleId + '.' + element;
+    var isQueueExisting = false;
+    bindingsJson.queues.forEach(function(queue) {
+      if (queue.queueName.indexOf(queueToAdd) > -1) {
+        console.log('Queue \'' + queueToAdd + '\' already exist in bindings file.');
+        isQueueExisting = true;
+      }
+    }, this);
+
+    if (!isQueueExisting) {
+      console.log('Adding queue \'' + queueToAdd + '\' to bindings file.');
+      bindingsJson.queues.push({'queueName': queueToAdd});
+      bindingsJson.bindings[0].binds.push({'bindingkey': queueToAdd, 'queueName': queueToAdd});
+    }
+  }, this);
+
+  // Write bindingsJson back to file
+  try {
+    fs.writeFileSync(pathToKairosBindings, JSON.stringify(bindingsJson, null, 2), {encoding: 'utf8'});
+  } catch (err) {
+    console.error('Failed to write new queues and bindings to file. Error: ' + err);
+    return false;
+  }
 
   return true;
 }
