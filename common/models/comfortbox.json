@@ -13,14 +13,16 @@
     "particleId": {
       "type": "string",
       "required": true
+    },
+    "created": {
+      "type": "date"
     }
   },
   "validations": [],
   "relations": {},
   "acls": [],
   "methods": {
-    "isOnline": {
-      "isStatic": false,
+    "prototype.isOnline": {
       "accepts": [
       ],
       "returns": {
@@ -36,8 +38,7 @@
         }
       ]
     },
-    "displayText": {
-      "isStatic": false,
+    "prototype.displayText": {
       "accepts": [
         {
           "arg": "text",
@@ -59,8 +60,7 @@
         }
       ]
     },
-    "displayLed": {
-      "isStatic": false,
+    "prototype.displayLed": {
       "accepts": [
         {
           "arg": "colorsInBase64",
@@ -82,8 +82,7 @@
         }
       ]
     },
-    "displayHexColor": {
-      "isStatic": false,
+    "prototype.displayHexColor": {
       "accepts": [
         {
           "arg": "colorInHex",
@@ -105,8 +104,7 @@
         }
       ]
     },
-    "displayData": {
-      "isStatic": false,
+    "prototype.displayData": {
       "accepts": [
       ],
       "returns": {
@@ -122,8 +120,7 @@
         }
       ]
     },
-    "setInterval": {
-      "isStatic": false,
+    "prototype.setInterval": {
       "accepts": [
         {
           "arg": "interval",
@@ -145,8 +142,7 @@
         }
       ]
     },
-    "setMqttHost": {
-      "isStatic": false,
+    "prototype.setMqttHost": {
       "accepts": [
         {
           "arg": "host",
@@ -174,8 +170,7 @@
         }
       ]
     },
-    "setShowDataRegularly": {
-      "isStatic": false,
+    "prototype.setShowDataRegularly": {
       "accepts": [
         {
           "arg": "doShowDataRegularly",
@@ -198,8 +193,7 @@
         }
       ]
     },
-    "getMetricNames": {
-      "isStatic": false,
+    "prototype.getMetricNames": {
       "accepts": [
       ],
       "returns": {
@@ -216,7 +210,6 @@
       ]
     },
     "getAllComfortboxesInDB": {
-      "isStatic": true,
       "accepts": [
       ],
       "returns": {
@@ -233,7 +226,6 @@
       ]
     },
     "queryMetricData": {
-      "isStatic": true,
       "accepts": [
         {
           "arg": "metricName",
@@ -312,7 +304,6 @@
       ]
     },
     "queryMetricDataByJson": {
-      "isStatic": true,
       "accepts": [
         {
           "arg": "query",

@@ -64,7 +64,7 @@ function handleMsg(msg) {
     // Check if an instance with given id already exists, if not create a new one.
     this.server.models.ComfortBox.findOrCreate(
       {where: {particleId: result.id}},
-      {name: result.name, particleId: result.id},
+      {name: result.name, particleId: result.id, created: new Date()},
       null,
       function(err, instance, created) {
         if (err) {
