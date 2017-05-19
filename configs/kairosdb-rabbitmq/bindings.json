@@ -3,9 +3,9 @@
     {
       "exchange": "amq.topic",
       "exchangeType": "topic",
-      "exchangeDurable" : "true",
-      "exchangeAutoDelete" : "false",
-      "exchangeInternal" : "false",
+      "exchangeDurable": "true",
+      "exchangeAutoDelete": "false",
+      "exchangeInternal": "false",
       "binds": [
         {
           "bindingkey": "comfort.220037000f47343432313031.bat",

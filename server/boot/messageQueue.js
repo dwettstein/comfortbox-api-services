@@ -4,20 +4,17 @@ var amqp = require('amqplib/callback_api');
 var fs = require('fs');
 
 module.exports = function(server, callback) {
-  if (typeof server.locals.settings.rabbitMqServer == 'undefined' || server.locals.settings.rabbitMqServer === null || !fs.existsSync(server.locals.settings.pathToKairosBindings)) {
+  this.server = server;
+  this.pathToKairosBindings = server.get('pathToKairosBindings');
+  this.rabbitMqServer = server.get('rabbitMqServer');
+  if (typeof this.rabbitMqServer == 'undefined' || this.rabbitMqServer === null || !fs.existsSync(this.pathToKairosBindings)) {
     console.warn('RabbitMQ server config or bindings file not available. Skip messageQueue boot script.');
     callback();
     return;
   }
 
-  this.host = server.locals.settings.rabbitMqServer.host;
-  this.port = server.locals.settings.rabbitMqServer.port;
-  this.username = server.locals.settings.rabbitMqServer.username;
-  this.password = server.locals.settings.rabbitMqServer.password;
-  this.server = server;
-
   console.log('Connecting to message queue...');
-  amqp.connect('amqp://' + this.username + ':' + this.password + '@' + this.host + ':' + this.port, function(err, connection) {
+  amqp.connect('amqp://' + this.rabbitMqServer.username + ':' + this.rabbitMqServer.password + '@' + this.rabbitMqServer.host + ':' + this.rabbitMqServer.port, function(err, connection) {
     if (err) {
       console.error(err);
       return;
@@ -73,7 +70,7 @@ function handleMsg(msg) {
         }
         if (created) {
           console.log('[MQ] A new ComfortBox instance has been created: id: ' + JSON.stringify(instance));
-          updateKairosBindingsFile(this.server.locals.settings.pathToKairosBindings, this.particleId);
+          updateKairosBindingsFile(this.pathToKairosBindings, this.particleId);
         } else {
           console.log('[MQ] Existing ComfortBox instance found: id: ' + JSON.stringify(instance));
         }
@@ -111,6 +108,7 @@ function updateKairosBindingsFile(pathToKairosBindings, particleId) {
   }
 
   // Add new queues and bindings
+  var hasFileChanged = false;
   var queueNames = ['bat', 'co2', 'event.button.0', 'event.button.1', 'event.dtap', 'event.tap', 'hpa', 'hum', 'lux', 'offline', 'online', 'sound', 'temp', 'wind'];
 
   queueNames.forEach(function(element) {
@@ -130,12 +128,14 @@ function updateKairosBindingsFile(pathToKairosBindings, particleId) {
     }
   }, this);
 
-  // Write bindingsJson back to file
-  try {
-    fs.writeFileSync(pathToKairosBindings, JSON.stringify(bindingsJson, null, 2), {encoding: 'utf8'});
-  } catch (err) {
-    console.error('Failed to write new queues and bindings to file. Error: ' + err);
-    return false;
+  // Write bindingsJson back to file (only if there were changes)
+  if (hasFileChanged) {
+    try {
+      fs.writeFileSync(pathToKairosBindings, JSON.stringify(bindingsJson, null, 2), {encoding: 'utf8'});
+    } catch (err) {
+      console.error('Failed to write new queues and bindings to file. Error: ' + err);
+      return false;
+    }
   }
 
   return true;

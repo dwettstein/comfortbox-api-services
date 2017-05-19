@@ -2,6 +2,10 @@
   "restApiRoot": "/api",
   "host": "0.0.0.0",
   "port": 3000,
+  "url": "https://0.0.0.0:3000/",
+  "swagger": {
+    "protocol": "https"
+  },
   "logoutSessionsOnSensitiveChanges": true,
   "remoting": {
     "context": false,
@@ -21,6 +25,8 @@
     "handleErrors": false
   },
   "legacyExplorer": false,
+  "certificatePath": "/path_to_certificate/cert.pem",
+  "privateKeyPath": "/path_to_certificate/privkey.pem",
   "rabbitMqServer": {
     "host": "localhost",
     "port": 5672,
