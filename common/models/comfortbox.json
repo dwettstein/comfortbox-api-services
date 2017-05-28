@@ -170,6 +170,29 @@
         }
       ]
     },
+    "prototype.setWorktime": {
+      "accepts": [
+        {
+          "arg": "worktime",
+          "type": "string",
+          "required": true,
+          "default": "08:00-17:00",
+          "description": "The worktime in following format: hh:mm-hh:mm"
+        }
+      ],
+      "returns": {
+        "arg": "response",
+        "type": "string",
+        "root": true,
+        "description": "Response from Particle API"
+      },
+      "description": "Change the working hours (worktime) of a ComfortBox (e.g. 08:00-17:00)",
+      "http": [
+        {
+          "verb": "post"
+        }
+      ]
+    },
     "prototype.setShowDataRegularly": {
       "accepts": [
         {
@@ -245,6 +268,7 @@
           "type": "string",
           "required": false,
           "default": "days",
+          "enum": ["years", "months", "weeks", "days", "hours", "minutes", "seconds", "milliseconds"],
           "description": "The unit for the relative start time. One of: years, months, weeks, days, hours, minutes, seconds, milliseconds. This value will be ignored if startAbsolute is given."
         },
         {
@@ -263,6 +287,7 @@
           "arg": "endRelativeUnit",
           "type": "string",
           "required": false,
+          "enum": ["years", "months", "weeks", "days", "hours", "minutes", "seconds", "milliseconds"],
           "description": "The unit for the relative end time. One of: years, months, weeks, days, hours, minutes, seconds, milliseconds. This value will be ignored if endAbsolute is given."
         },
         {
@@ -275,6 +300,7 @@
           "arg": "aggregatorName",
           "type": "string",
           "required": false,
+          "enum": ["avg", "count", "dev", "diff", "div", "first", "gaps", "last", "least_squares", "max", "min", "percentile", "rate", "sampler", "save_as", "scale", "sum", "trim"],
           "description": "The name of the aggregator function. One of: avg, count, dev, diff, div, first, gaps, last, least_squares, max, min, percentile, rate, sampler, save_as, scale, sum, trim"
         },
         {
@@ -287,6 +313,7 @@
           "arg": "aggregatorUnit",
           "type": "string",
           "required": false,
+          "enum": ["years", "months", "weeks", "days", "hours", "minutes", "seconds", "milliseconds"],
           "description": "The unit for the aggregator sampling. One of: years, months, weeks, days, hours, minutes, seconds, milliseconds. Mandatory if aggregatorName is given."
         }
       ],

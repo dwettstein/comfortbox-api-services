@@ -133,6 +133,24 @@ module.exports = function(ComfortBox) {
   };
 
   /**
+   * Change the working hours (worktime) of a ComfortBox (e.g. 08:00-17:00).
+   *
+   * @param {string} worktime The worktime in following format: hh:mm-hh:mm
+   * @param {Function(Error, response)} callback
+   */
+  ComfortBox.prototype.setWorktime = function(worktime, callback) {
+    console.log('Called function setWorktime with param worktime: ' + worktime);
+
+    var processResponse = function(error, response, body) {
+      var result = processParticleResponse(error, response, body);
+      callback(null, result);
+    };
+
+    console.log('Requesting Particle API with particleId: ' + this.particleId);
+    ComfortBox.app.dataSources.ParticleAPI.setWorktime(this.particleId, worktime, processResponse);
+  };
+
+  /**
    * Change if the ComfortBox should show the sensor's data regularly or not.
    *
    * @param {boolean} Boolean whether to show the data regularly or not (true or false)

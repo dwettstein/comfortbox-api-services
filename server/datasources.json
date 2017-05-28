@@ -96,6 +96,19 @@
       {
         "template": {
           "method": "POST",
+          "url": "https://api.particle.io/v1/devices/{particleId}/set_worktime",
+          "form": {
+            "arg": "{worktime}"
+          },
+          "responsePath": "$"
+        },
+        "functions": {
+          "setWorktime": ["particleId", "worktime"]
+        }
+      },
+      {
+        "template": {
+          "method": "POST",
           "url": "https://api.particle.io/v1/devices/{particleId}/set_showdata",
           "form": {
             "arg": "{doShowDataRegularly}"
