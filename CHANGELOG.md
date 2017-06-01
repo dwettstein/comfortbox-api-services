@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Added
+- Function setWorktime for configuring ComfortBox
+- Optional property `labels` (array of strings) to model ComfortBox
 
 ## [0.1.0] - 2017-05-19
 ### Added

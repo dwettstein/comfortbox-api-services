@@ -16,6 +16,9 @@
     },
     "created": {
       "type": "date"
+    },
+    "labels": {
+      "type": ["string"]
     }
   },
   "validations": [],
