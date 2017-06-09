@@ -87,6 +87,12 @@
     ```bash
     curl -L -O https://github.com/kairosdb/kairosdb/releases/download/v1.1.2/kairosdb_1.1.2-1_all.deb
     sudo dpkg -i kairosdb_1.1.2-1_all.deb
+
+    # Update plugin configuration and queue bindings according to your RabbitMQ setup
+    vi /opt/kairosdb/conf/kairosdb.properties
+    # Update: kairosdb.jetty.ssl.port, kairosdb.jetty.ssl.keystore.path, kairosdb.jetty.ssl.keystore.password, kairosdb.jetty.basic_auth.user, kairosdb.jetty.basic_auth.password
+    # Set: kairosdb.service.datastore=org.kairosdb.datastore.cassandra.CassandraModule
+    # Update: kairosdb.datastore.cassandra.host_list=localhost:9160, kairosdb.datastore.cassandra.keyspace=kairosdb
     ```
 8. Install KairosDB-RabbitMQ plugin
 
