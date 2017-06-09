@@ -92,10 +92,12 @@
 
     ```bash
     git clone https://github.com/dwettstein/kairosdb-rabbitmq.git
+    cd kairosdb-rabbitmq/
+    git checkout feature/auto-update-bindings
 
     # Copy necessary files
-    cp kairosdb-rabbitmq/dist/lib/* /opt/kairosdb/lib/
-    cp kairosdb-rabbitmq/dist/conf/* /opt/kairosdb/conf/
+    cp dist/lib/* /opt/kairosdb/lib/
+    cp dist/conf/* /opt/kairosdb/conf/
 
     # Update plugin configuration and queue bindings according to your RabbitMQ setup
     cd /opt/kairosdb/conf/
