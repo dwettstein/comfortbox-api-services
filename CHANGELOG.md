@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
+- Switch DB to Cassandra
 
 ## [0.2.0] - 2017-06-09
 ### Added

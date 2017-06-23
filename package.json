@@ -1,6 +1,6 @@
 {
   "name": "comfortbox-api-services",
-  "version": "1.0.0",
+  "version": "0.2.0",
   "main": "server/server.js",
   "scripts": {
     "lint": "./node_modules/.bin/eslint .",
@@ -16,6 +16,7 @@
     "loopback-boot": "^2.24.0",
     "loopback-component-explorer": "^4.2.0",
     "loopback-connector-rest": "^2.1.0",
+    "loopback-connector-cassandra": "^1.2.0",
     "serve-favicon": "^2.0.1",
     "strong-error-handler": "^2.1.0",
     "amqplib": "^0.5.1"

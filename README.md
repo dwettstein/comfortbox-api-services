@@ -30,6 +30,8 @@ After finishing the complete server installation, you need to configure the API 
     - KairosDB baseURL (hostname of certificate)
     - KairosDB Authorization
     - KairosDB url for each operation (hostname of certificate)
+- `./server/datasources.production.json` \- Update the values for:
+    - DB (Cassandra)
 
 ---
 ## How to use the API
