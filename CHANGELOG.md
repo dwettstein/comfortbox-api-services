@@ -6,12 +6,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
-- Switch DB to Cassandra
+
+
+## [0.3.0] - 2017-06-23
+### Added
+- Switch production DB to Cassandra
+
 
 ## [0.2.0] - 2017-06-09
 ### Added
 - Function setWorktime for configuring ComfortBox
 - Optional property `labels` (array of strings) to model ComfortBox
+
 
 ## [0.1.0] - 2017-05-19
 ### Added
@@ -31,6 +37,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Use HTTPS for communicating with API and server
 - Brief documentation about setting up the server
 
-[Unreleased]: https://github.com/dwettstein/comfortbox-api-services/compare/v0.2.0...HEAD
-[0.2.0]: https://github.com/dwettstein/comfortbox-api-services/tree/v0.2.0
+[Unreleased]: https://github.com/dwettstein/comfortbox-api-services/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/dwettstein/comfortbox-api-services/compare/v0.2.0...v0.3.0
+[0.2.0]: https://github.com/dwettstein/comfortbox-api-services/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/dwettstein/comfortbox-api-services/tree/v0.1.0
