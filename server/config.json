@@ -25,6 +25,10 @@
     "handleErrors": false
   },
   "legacyExplorer": false,
+  "defaultUsername": "comfortbox",
+  "defaultPassword": "comfortbox",
+  "defaultEmail": "info@localhost.com",
+  "defaultAccessToken": "64abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
   "certificatePath": "/path_to_certificate/cert.pem",
   "privateKeyPath": "/path_to_certificate/privkey.pem",
   "rabbitMqServer": {

@@ -15,7 +15,17 @@
   },
   "User": {
     "dataSource": "db",
-    "public": false
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "create": true,
+          "login": true,
+          "logout": true
+        }
+      }
+    }
   },
   "AccessToken": {
     "dataSource": "db",
