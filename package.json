@@ -1,6 +1,6 @@
 {
   "name": "comfortbox-api-services",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "main": "server/server.js",
   "scripts": {
     "lint": "./node_modules/.bin/eslint .",

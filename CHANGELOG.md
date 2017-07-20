@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 
+## [0.4.0] - 2017-07-20
+### Added
+- Enable authentication
+
+
 ## [0.3.0] - 2017-06-23
 ### Added
 - Switch production DB to Cassandra
@@ -37,7 +42,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Use HTTPS for communicating with API and server
 - Brief documentation about setting up the server
 
-[Unreleased]: https://github.com/dwettstein/comfortbox-api-services/compare/v0.3.0...HEAD
+[Unreleased]: https://github.com/dwettstein/comfortbox-api-services/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/dwettstein/comfortbox-api-services/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/dwettstein/comfortbox-api-services/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/dwettstein/comfortbox-api-services/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/dwettstein/comfortbox-api-services/tree/v0.1.0

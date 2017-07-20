@@ -4,6 +4,8 @@ module.exports = function enableAuthentication(server) {
   // enable authentication
   server.enableAuth({datasource: 'db'});
 
+  var AccessToken = server.models.AccessToken;
+
   var User = server.models.User;
   User.replaceOrCreate({
     username: server.get('defaultUsername'),
@@ -15,6 +17,10 @@ module.exports = function enableAuthentication(server) {
       throw err;
     }
     console.log('Created default user: ', defaultUser);
+
+    AccessToken.destroyAll({
+      where: {userId: defaultUser.id},
+    });
 
     var ONE_YEAR_IN_SEC = 60 * 60 * 24 * 365;
     defaultUser.accessTokens.create({

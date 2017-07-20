@@ -20,6 +20,10 @@ For setting up RabbitMQ, KairosDB and Grafana, take a look at the [server docume
 ### Configuration
 After finishing the complete server installation, you need to configure the API services by editing the following two files, before you can use it.
 - `./server/config.json` \- Update the values for:
+    - defaultUsername
+    - defaultPassword
+    - defaultEmail
+    - defaultAccessToken
     - certificatePath
     - privateKeyPath
     - rabbitMqServer
@@ -36,6 +40,7 @@ After finishing the complete server installation, you need to configure the API 
 ---
 ## How to use the API
 First, have a look at the API Swagger documentation on `https://localhost:3000/explorer/` (change localhost to your hostname if needed).
+Every request to the API needs to be authenticated with a token. Initially, you can use the default user or token defined in `./server/config.json`.
 
 ### Register a new box
 Before you can configure a ComfortBox or query data from it, you need to register it within the API.
