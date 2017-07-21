@@ -7,31 +7,31 @@ module.exports = function enableAuthentication(server) {
   var AccessToken = server.models.AccessToken;
 
   var User = server.models.User;
-  User.replaceOrCreate({
-    username: server.get('defaultUsername'),
-    password: server.get('defaultPassword'),
-    email: server.get('defaultEmail'),
-  }, function(err, defaultUser) {
-    if (err) {
-      console.error(err);
-    }
-    console.log('Created default user: ', defaultUser);
-
-    AccessToken.destroyAll({
-      where: {userId: defaultUser.id},
-    });
-
-    var ONE_YEAR_IN_SEC = 60 * 60 * 24 * 365;
-    defaultUser.accessTokens.create({
-      id: server.get('defaultAccessToken'),
-      ttl: ONE_YEAR_IN_SEC,
-    }, function(err, defaultToken) {
+  User.upsertWithWhere(
+    {where: {email: 'defaultUser@localhost.com'}},
+    {username: server.get('defaultUsername'), password: server.get('defaultPassword'), email: 'defaultUser@localhost.com'},
+    function(err, defaultUser) {
       if (err) {
         console.error(err);
       }
-      console.log('Created default accessToken: ', defaultToken);
-    });
-  });
+      console.log('Created default user: ', defaultUser);
+
+      AccessToken.destroyAll({
+        where: {userId: defaultUser.id},
+      });
+
+      var ONE_YEAR_IN_SEC = 60 * 60 * 24 * 365;
+      defaultUser.accessTokens.create({
+        id: server.get('defaultAccessToken'),
+        ttl: ONE_YEAR_IN_SEC,
+      }, function(err, defaultToken) {
+        if (err) {
+          console.error(err);
+        }
+        console.log('Created default accessToken: ', defaultToken);
+      });
+    }
+  );
 
   User.disableRemoteMethodByName('prototype.__count__accessTokens');
   User.disableRemoteMethodByName('prototype.__create__accessTokens');
