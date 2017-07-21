@@ -2,13 +2,10 @@
   "db": {
     "name": "db",
     "host": "localhost",
-    "port": 9042,
+    "port": 5432,
     "database": "comfortboxapi",
-    "keyspace": "comfortboxapi",
-    "user": "cassandra",
-    "password": "cassandra",
-    "connectTimeout": 30000,
-    "readTimeout": 30000,
-    "connector": "cassandra"
+    "user": "comfortboxapi",
+    "password": "comfortboxapi",
+    "connector": "postgresql"
   }
 }

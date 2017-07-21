@@ -13,9 +13,30 @@ If you are more interested in the ComfortBox itself, please have a look at the G
 |-----------------------------------------|-----------------------------------------|-------------------------------------------------|---------------------------------------|
 | ![RabbitMQ](./docs/images/rabbitmq.png) | ![KairosDB](./docs/images/kairosdb.png) | ![API Explorer](./docs/images/api_explorer.png) | ![Grafana](./docs/images/grafana.png) |
 
+
 ---
 ## Installation
-For setting up RabbitMQ, KairosDB and Grafana, take a look at the [server documentation](./docs/setup_server.md).
+For setting up RabbitMQ, KairosDB and (optionally) Grafana, take a look at the [server documentation](./docs/setup_server.md).
+
+Before you install the ComfortBox API, install the database with the following commands:
+
+```bash
+sudo apt-get install postgresql
+
+su postgresql
+
+createuser -P comfortboxapi
+# Enter the password (e.g. comfortboxapi)
+createdb comfortboxapi
+
+psql
+# postgres=# grant all privileges on database comfortboxapi to comfortboxapi;
+# \q
+```
+
+Installing the ComfortBox API itself is easily done:
+- Copy or clone the repository
+- Install the dependencies by running `npm install`
 
 ### Configuration
 After finishing the complete server installation, you need to configure the API services by editing the following two files, before you can use it.
@@ -34,8 +55,12 @@ After finishing the complete server installation, you need to configure the API 
     - KairosDB baseURL (hostname of certificate)
     - KairosDB Authorization
     - KairosDB url for each operation (hostname of certificate)
-- `./server/datasources.production.json` \- Update the values for:
-    - DB (Cassandra)
+- `./server/datasources.production.json` \- Update the values for (not needed if you have setup the DB as written above):
+    - DB (PostgreSQL)
+
+### Run it
+Run the API with `node .` or `nohup node . &`.
+
 
 ---
 ## How to use the API
@@ -56,9 +81,11 @@ As an example, you can set the MQTT host by requesting `POST /ComfortBoxes/{id}/
 As soon as the registered ComfortBox sends the `comfort.{{particleId}}.online` message to the MQTT installation of the API service, the message queues and bindings will be created and you can query the device's data afterwards.
 To see which metrics of a device are available simply request `GET /ComfortBoxes/{id}/getMetricNames`. Then you can query a metric by requesting `POST /ComfortBoxes/queryMetricData` and the corresponding metric name.
 
+
 ---
 ## Use the API services within your Node-RED flows
 For using the API services within Node-RED workflows, have a look at the repository [node-red-contrib-comfortbox](https://github.com/dwettstein/node-red-contrib-comfortbox). There, you can also find some example flows.
+
 
 ---
 ## Development - Run the tests

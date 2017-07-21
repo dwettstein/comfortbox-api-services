@@ -8,6 +8,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 
+## [0.5.0] - 2017-07-21
+### Changed
+- Change DB to PostgreSQL due to issues with User model
+- Update README installation part
+
+
 ## [0.4.0] - 2017-07-20
 ### Added
 - Enable authentication
@@ -42,7 +48,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Use HTTPS for communicating with API and server
 - Brief documentation about setting up the server
 
-[Unreleased]: https://github.com/dwettstein/comfortbox-api-services/compare/v0.4.0...HEAD
+[Unreleased]: https://github.com/dwettstein/comfortbox-api-services/compare/v0.5.0...HEAD
+[0.5.0]: https://github.com/dwettstein/comfortbox-api-services/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/dwettstein/comfortbox-api-services/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/dwettstein/comfortbox-api-services/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/dwettstein/comfortbox-api-services/compare/v0.1.0...v0.2.0
