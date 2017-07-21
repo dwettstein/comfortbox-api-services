@@ -14,7 +14,6 @@ module.exports = function enableAuthentication(server) {
   }, function(err, defaultUser) {
     if (err) {
       console.error(err);
-      throw err;
     }
     console.log('Created default user: ', defaultUser);
 
@@ -29,7 +28,6 @@ module.exports = function enableAuthentication(server) {
     }, function(err, defaultToken) {
       if (err) {
         console.error(err);
-        throw err;
       }
       console.log('Created default accessToken: ', defaultToken);
     });
@@ -54,7 +52,6 @@ module.exports = function enableAuthentication(server) {
   }, function(err, acls) {
     if (err) {
       console.error(err);
-      throw err;
     }
     console.log('Added ACL to User: ', acls);
   });
