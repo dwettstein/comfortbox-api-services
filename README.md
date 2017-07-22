@@ -61,6 +61,13 @@ After finishing the complete server installation, you need to configure the API 
 ### Run it
 Run the API with `node .` or `nohup node . &`.
 
+#### Production
+Before running the API in production, you have to create the DB tables by running the script `automigrate.js`:
+
+```bash
+node bin/automigrate.js
+```
+
 
 ---
 ## How to use the API
