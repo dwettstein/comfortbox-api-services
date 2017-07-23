@@ -115,7 +115,34 @@
     sudo service kairosdb restart
     ```
 9. Check if data is received by opening: https://localhost:8080/
-10. [Optional] Install Grafana GUI - [see here for more information](http://docs.grafana.org/installation/debian/)
+10. Install Node-RED - [see here for more information](https://nodered.org/docs/getting-started/installation)
+
+    ```bash
+    # Install Node.js if not already done: https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions
+
+    sudo npm install -g node-red
+
+    # Update the configuration
+    vi ~/.node-red/settings.js
+    # uiPort: process.env.PORT || 443,
+    # https: {
+    #     key: fs.readFileSync('/etc/letsencrypt/live/change_to_your_servers_public_hostname/privkey.pem'),
+    #     cert: fs.readFileSync('/etc/letsencrypt/live/change_to_your_servers_public_hostname/cert.pem')
+    # },
+    # requireHttps: true,
+
+    # [Optional] Authorization: (For generating the password hash, see here: https://nodered.org/docs/security.html)
+    # adminAuth: {
+    #     type: "credentials",
+    #     users: [{
+    #         username: "admin",
+    #         password: "$2a$08$SN21cq4vhVLQt4t/VgHsceRGs9gh6QQSj9/tA0l2tBC.YPdwLeqQW",
+    #         permissions: "*"
+    #     }]
+    # },
+
+    ```
+11. [Optional] Install Grafana GUI - [see here for more information](http://docs.grafana.org/installation/debian/)
 
     ```bash
     curl -L -O --insecure https://dl.bintray.com/fg2it/deb-rpi-1b/main/g/grafana_4.0.2-1481228314_armhf.deb
@@ -125,7 +152,7 @@
     # Update the server section of the configuration
     vi /etc/grafana/grafana.ini
     # protocol = https
-    # http_port = 443
+    # http_port = 8443
     # domain = change_to_your_servers_public_hostname
     # root_url = https://change_to_your_servers_public_hostname:443
     # cert_file = /etc/letsencrypt/live/change_to_your_servers_public_hostname/cert.pem
@@ -137,7 +164,7 @@
 
     sudo service grafana-server start
     ```
-11. [Optional] Check if Grafana is running by opening: https://localhost:443 (default login: admin - admin)
+12. [Optional] Check if Grafana is running by opening: https://localhost:443 (default login: admin - admin)
     - Install KairosDB plugin - [see here for more information](https://grafana.net/plugins/grafana-kairosdb-datasource)
 
         ```bash

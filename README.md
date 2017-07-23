@@ -18,6 +18,8 @@ If you are more interested in the ComfortBox itself, please have a look at the G
 ## Installation
 For setting up RabbitMQ, KairosDB and (optionally) Grafana, take a look at the [server documentation](./docs/setup_server.md).
 
+As the ComfortBox API is a Node.js application, you need to install Node.js in advance of course. Please have a look at their documentation for that: [Installing Node.js via package manager](https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions)
+
 Before you install the ComfortBox API, install the database with the following commands:
 
 ```bash
