@@ -36,8 +36,8 @@
 
     crontab -e
     # Add the following lines to your CronTab job:
-    # 30 2 * * 1 letsencrypt renew >> /var/log/le-renew.log
-    # 45 2 * * 1 sh /etc/letsencrypt/live/change_to_your_servers_public_hostname/letsencrypt-jetty.sh >> /var/log/le-renew.log
+    # 30 2 * * 1 pkill node-red && (letsencrypt renew >> /var/log/le-renew.log) && (nohup node-red &)
+    # 45 2 * * 1 cd /etc/letsencrypt/live/change_to_your_servers_public_hostname/ &&  (sh letsencrypt-jetty.sh >> /var/log/le-renew.log)
     ```
 4. Install RabbitMQ with MQTT Plugin - [see here for more information](https://www.rabbitmq.com/install-debian.html)
 
