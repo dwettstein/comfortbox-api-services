@@ -12,6 +12,12 @@
   "__requires": [
     {
       "type": "panel",
+      "id": "singlestat",
+      "name": "Singlestat",
+      "version": ""
+    },
+    {
+      "type": "panel",
       "id": "graph",
       "name": "Graph",
       "version": ""
@@ -38,7 +44,7 @@
   "sharedCrosshair": false,
   "hideControls": false,
   "time": {
-    "from": "now-6h",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {
@@ -72,12 +78,378 @@
   "annotations": {
     "list": []
   },
-  "refresh": false,
+  "refresh": "5s",
   "schemaVersion": 13,
-  "version": 8,
+  "version": 7,
   "links": [],
   "gnetId": null,
   "rows": [
+    {
+      "title": "Dashboard Row",
+      "panels": [
+        {
+          "addHorizontalAggregatorMode": false,
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgb(35, 175, 30)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_KAIROSDB}",
+          "downsampling": "(NONE)",
+          "editable": true,
+          "error": false,
+          "format": "celsius",
+          "gauge": {
+            "maxValue": 50,
+            "minValue": -20,
+            "show": false,
+            "thresholdLabels": true,
+            "thresholdMarkers": false
+          },
+          "hasFactor": false,
+          "hasPercentile": false,
+          "hasSamplingRate": false,
+          "hasUnit": false,
+          "id": 12,
+          "interval": null,
+          "isAggregatorValid": false,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 3,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": true
+          },
+          "stack": false,
+          "targets": [
+            {
+              "downsampling": "(NONE)",
+              "errors": {},
+              "groupBy": {
+                "timeInterval": "1s"
+              },
+              "horAggregator": {
+                "factor": "1",
+                "percentile": "0.75",
+                "samplingRate": "1s",
+                "unit": "millisecond"
+              },
+              "metric": "comfort.220037000f47343432313031.temp",
+              "refId": "A"
+            }
+          ],
+          "thresholds": "18,26",
+          "title": "Current Temperature",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "datasource": "${DS_KAIROSDB}",
+          "downsampling": "(NONE)",
+          "editable": true,
+          "error": false,
+          "format": "humidity",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": true,
+            "thresholdLabels": true,
+            "thresholdMarkers": true
+          },
+          "id": 13,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 3,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": true
+          },
+          "stack": false,
+          "targets": [
+            {
+              "downsampling": "avg",
+              "errors": {},
+              "groupBy": {
+                "timeInterval": "1s"
+              },
+              "horAggregator": {
+                "factor": "1",
+                "percentile": "0.75",
+                "samplingRate": "1s",
+                "unit": "millisecond"
+              },
+              "metric": "comfort.220037000f47343432313031.hum",
+              "refId": "A"
+            }
+          ],
+          "thresholds": "50,60",
+          "title": "Current Humidity",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "datasource": "${DS_KAIROSDB}",
+          "downsampling": "avg",
+          "editable": true,
+          "error": false,
+          "format": "ppm",
+          "gauge": {
+            "maxValue": 2000,
+            "minValue": 0,
+            "show": true,
+            "thresholdLabels": true,
+            "thresholdMarkers": true
+          },
+          "id": 14,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 3,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": true
+          },
+          "stack": false,
+          "targets": [
+            {
+              "downsampling": "avg",
+              "errors": {},
+              "groupBy": {
+                "timeInterval": "1s"
+              },
+              "horAggregator": {
+                "factor": "1",
+                "percentile": "0.75",
+                "samplingRate": "1s",
+                "unit": "millisecond"
+              },
+              "metric": "comfort.220037000f47343432313031.co2",
+              "refId": "A"
+            }
+          ],
+          "thresholds": "800,1000",
+          "title": "Current CO2",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "datasource": "${DS_KAIROSDB}",
+          "downsampling": "(NONE)",
+          "editable": true,
+          "error": false,
+          "format": "pressurehpa",
+          "gauge": {
+            "maxValue": 1200,
+            "minValue": 800,
+            "show": true,
+            "thresholdLabels": true,
+            "thresholdMarkers": false
+          },
+          "id": 15,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 3,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": true
+          },
+          "stack": false,
+          "targets": [
+            {
+              "downsampling": "avg",
+              "errors": {},
+              "groupBy": {
+                "timeInterval": "1s"
+              },
+              "horAggregator": {
+                "factor": "1",
+                "percentile": "0.75",
+                "samplingRate": "1s",
+                "unit": "millisecond"
+              },
+              "metric": "comfort.220037000f47343432313031.hpa",
+              "refId": "A"
+            }
+          ],
+          "thresholds": "",
+          "title": "Current Pressure",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        }
+      ],
+      "showTitle": false,
+      "titleSize": "h6",
+      "height": 250,
+      "repeat": null,
+      "repeatRowId": null,
+      "repeatIteration": null,
+      "collapse": false
+    },
     {
       "title": "Dashboard Row",
       "panels": [
