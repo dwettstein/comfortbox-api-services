@@ -9,17 +9,18 @@
     "posttest": "npm run lint && nsp check"
   },
   "dependencies": {
+    "amqplib": "^0.5.1",
+    "amqplib-auto-recovery": "^0.2.0",
     "compression": "^1.6.2",
     "cors": "^2.8.3",
     "helmet": "^3.6.0",
     "loopback": "^3.8.0",
     "loopback-boot": "^2.24.0",
     "loopback-component-explorer": "^4.2.0",
-    "loopback-connector-rest": "^2.1.0",
     "loopback-connector-postgresql": "^3.0.2",
+    "loopback-connector-rest": "^2.1.0",
     "serve-favicon": "^2.0.1",
-    "strong-error-handler": "^2.1.0",
-    "amqplib": "^0.5.1"
+    "strong-error-handler": "^2.1.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",

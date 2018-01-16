@@ -1,6 +1,7 @@
 'use strict';
 
 var amqp = require('amqplib/callback_api');
+var amqpAutoRecovery = require('amqplib-auto-recovery');
 var fs = require('fs');
 
 module.exports = function(server, callback) {
@@ -8,15 +9,18 @@ module.exports = function(server, callback) {
   this.pathToKairosBindings = server.get('pathToKairosBindings');
   this.rabbitMqServer = server.get('rabbitMqServer');
   if (typeof this.rabbitMqServer == 'undefined' || this.rabbitMqServer === null || !fs.existsSync(this.pathToKairosBindings)) {
-    console.warn('RabbitMQ server config or bindings file not available. Skip messageQueue boot script.');
+    console.warn('[MQ] RabbitMQ server config or bindings file not available. Skip messageQueue boot script.');
     callback();
     return;
   }
 
-  console.log('Connecting to message queue...');
-  amqp.connect('amqp://' + this.rabbitMqServer.username + ':' + this.rabbitMqServer.password + '@' + this.rabbitMqServer.host + ':' + this.rabbitMqServer.port, function(err, connection) {
+  console.log('[MQ] Connecting to message queue...');
+  amqpAutoRecovery(amqp, {
+    onError: (err) => { console.error('[MQ] An unexpected error occurred: ' + err); },
+    isErrorUnrecoverable: (err) => false,
+  }).connect('amqp://' + this.rabbitMqServer.username + ':' + this.rabbitMqServer.password + '@' + this.rabbitMqServer.host + ':' + this.rabbitMqServer.port, function(err, connection) {
     if (err) {
-      console.error(err);
+      console.error('[MQ] An unexpected error occurred: ' + err);
       return;
     }
 
@@ -44,7 +48,7 @@ function handleMsg(msg) {
   // Get ComfortBox name from Particle.
   this.server.models.ComfortBox.prototype.isOnline.bind(this)(function(err, result) {
     if (err) {
-      console.error(err);
+      console.error('[MQ] Failed to request isOnline: ' + err);
       return;
     }
 
@@ -65,7 +69,7 @@ function handleMsg(msg) {
       null,
       function(err, instance, created) {
         if (err) {
-          console.error(err);
+          console.error('[MQ] Failed to findOrCreate ComfortBox instance: ' + err);
           return;
         }
         if (created) {
@@ -81,13 +85,13 @@ function handleMsg(msg) {
 }
 
 function updateKairosBindingsFile(pathToKairosBindings, particleId) {
-  console.log('Update Kairos bindings.json file for particleId: ' + particleId + '. pathToKairosBindings: ' + pathToKairosBindings);
+  console.log('[MQ] Update Kairos bindings.json file for particleId: ' + particleId + '. pathToKairosBindings: ' + pathToKairosBindings);
 
   // Read file to json
   try {
     var bindingsContent = fs.readFileSync(pathToKairosBindings, 'utf8');
   } catch (err) {
-    console.error('Failed to read file from path \'' + pathToKairosBindings + '\'. Error: ' + err);
+    console.error('[MQ] Failed to read file from path \'' + pathToKairosBindings + '\'. Error: ' + err);
     return false;
   }
 
@@ -95,7 +99,7 @@ function updateKairosBindingsFile(pathToKairosBindings, particleId) {
   try {
     fs.writeFileSync(pathToKairosBindings + '.bak', bindingsContent, {encoding: 'utf8'});
   } catch (err) {
-    console.error('An error occurred while create the backup file for \'' + pathToKairosBindings + '\'. Error: ' + err);
+    console.error('[MQ] An error occurred while create the backup file for \'' + pathToKairosBindings + '\'. Error: ' + err);
     return false;
   }
 
@@ -103,7 +107,7 @@ function updateKairosBindingsFile(pathToKairosBindings, particleId) {
   try {
     var bindingsJson = JSON.parse(bindingsContent);
   } catch (err) {
-    console.error('Failed to parse JSON in file from path \'' + pathToKairosBindings + '\'. Error: ' + err);
+    console.error('[MQ] Failed to parse JSON in file from path \'' + pathToKairosBindings + '\'. Error: ' + err);
     return false;
   }
 
@@ -116,13 +120,13 @@ function updateKairosBindingsFile(pathToKairosBindings, particleId) {
     var isQueueExisting = false;
     bindingsJson.queues.forEach(function(queue) {
       if (queue.queueName.indexOf(queueToAdd) > -1) {
-        console.log('Queue \'' + queueToAdd + '\' already exist in bindings file.');
+        console.log('[MQ] Queue \'' + queueToAdd + '\' already exist in bindings file.');
         isQueueExisting = true;
       }
     }, this);
 
     if (!isQueueExisting) {
-      console.log('Adding queue \'' + queueToAdd + '\' to bindings file.');
+      console.log('[MQ] Adding queue \'' + queueToAdd + '\' to bindings file.');
       bindingsJson.queues.push({'queueName': queueToAdd});
       bindingsJson.bindings[0].binds.push({'bindingkey': queueToAdd, 'queueName': queueToAdd});
     }
@@ -133,7 +137,7 @@ function updateKairosBindingsFile(pathToKairosBindings, particleId) {
     try {
       fs.writeFileSync(pathToKairosBindings, JSON.stringify(bindingsJson, null, 2), {encoding: 'utf8'});
     } catch (err) {
-      console.error('Failed to write new queues and bindings to file. Error: ' + err);
+      console.error('[MQ] Failed to write new queues and bindings to file. Error: ' + err);
       return false;
     }
   }
