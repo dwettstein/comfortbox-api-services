@@ -61,7 +61,15 @@ After finishing the complete server installation, you need to configure the API 
     - DB (PostgreSQL)
 
 ### Run it
-Run the API with `node .` or `nohup node . &`.
+During development you can run the API with `node .` or `nohup node . &`.
+
+However, for production I recommend setting up a _systemd_ service using the example [comfortbox-api.service](./configs/comfortbox-api.service):
+1. If the path to the `node` command is not `/usr/bin/node`, update it with the value from `which node`
+2. Copy the file to the `/etc/systemd/system` directory
+3. Reload daemon: `sudo systemctl daemon-reload`
+4. Enable autostart: `sudo systemctl enable comfortbox-api.service`
+5. Start the service: `sudo systemctl start comfortbox-api.service`
+6. Check the status with `sudo systemctl status comfortbox-api.service`
 
 #### Production
 Before running the API in production, you have to create the DB tables by running the script `automigrate.js`:
