@@ -85,11 +85,13 @@
 7. Install KairosDB - [see here for more information](https://kairosdb.github.io/docs/build/html/index.html)
 
     ```bash
-    curl -L -O https://github.com/kairosdb/kairosdb/releases/download/v1.1.2/kairosdb_1.1.2-1_all.deb
-    sudo dpkg -i kairosdb_1.1.2-1_all.deb
+    curl -L -O https://github.com/kairosdb/kairosdb/releases/download/v1.1.3/kairosdb_1.1.3-1_all.deb
+    sudo dpkg -i kairosdb_1.1.3-1_all.deb
 
     # Update plugin configuration and queue bindings according to your RabbitMQ setup
-    vi /opt/kairosdb/conf/kairosdb.properties
+    cd /opt/kairosdb/conf
+    #curl -L -O https://raw.githubusercontent.com/dwettstein/comfortbox-api-services/master/configs/kairosdb/kairosdb.properties
+    vi kairosdb.properties
     # Update: kairosdb.jetty.ssl.port, kairosdb.jetty.ssl.keystore.path, kairosdb.jetty.ssl.keystore.password, kairosdb.jetty.basic_auth.user, kairosdb.jetty.basic_auth.password
     # Set: kairosdb.service.datastore=org.kairosdb.datastore.cassandra.CassandraModule
     # Update: kairosdb.datastore.cassandra.host_list=localhost:9160, kairosdb.datastore.cassandra.keyspace=kairosdb
@@ -97,13 +99,12 @@
 8. Install KairosDB-RabbitMQ plugin
 
     ```bash
-    git clone https://github.com/dwettstein/kairosdb-rabbitmq.git
-    cd kairosdb-rabbitmq/
-    git checkout feature/auto-update-bindings
+    curl -L -O https://github.com/dwettstein/kairosdb-rabbitmq/archive/v1.1.3-1-autoupdate.tar.gz
+    tar -xzf kairosdb-rabbitmq-1.1.3-1-autoupdate.tar.gz
 
     # Copy necessary files
-    cp dist/lib/* /opt/kairosdb/lib/
-    cp dist/conf/* /opt/kairosdb/conf/
+    cp kairosdb-rabbitmq-1.1.3-1-autoupdate/dist/lib/* /opt/kairosdb/lib/
+    cp kairosdb-rabbitmq-1.1.3-1-autoupdate/dist/conf/* /opt/kairosdb/conf/
 
     # Update plugin configuration and queue bindings according to your RabbitMQ setup
     cd /opt/kairosdb/conf/
@@ -123,7 +124,9 @@
     sudo npm install -g node-red
 
     # Update the configuration
-    vi ~/.node-red/settings.js
+    cd ~/.node-red
+    #curl -L -O https://raw.githubusercontent.com/dwettstein/comfortbox-api-services/master/configs/node-red/settings.js
+    vi settings.js
     # uiPort: process.env.PORT || 443,
     # https: {
     #     key: fs.readFileSync('/etc/letsencrypt/live/change_to_your_servers_public_hostname/privkey.pem'),
@@ -145,12 +148,14 @@
 11. [Optional] Install Grafana GUI - [see here for more information](http://docs.grafana.org/installation/debian/)
 
     ```bash
-    curl -L -O --insecure https://dl.bintray.com/fg2it/deb-rpi-1b/main/g/grafana_4.0.2-1481228314_armhf.deb
+    curl -L -O --insecure https://dl.bintray.com/fg2it/deb-rpi-1b/main/g/grafana_4.6.3_armhf.deb
     sudo apt-get install adduser libfontconfig
-    sudo dpkg -i grafana_4.0.2-1481228314_armhf.deb
+    sudo dpkg -i grafana_4.6.3_armhf.deb
 
     # Update the server section of the configuration
-    vi /etc/grafana/grafana.ini
+    cd /etc/grafana
+    #curl -L -O https://raw.githubusercontent.com/dwettstein/comfortbox-api-services/master/configs/grafana/grafana.ini
+    vi grafana.ini
     # protocol = https
     # http_port = 8443
     # domain = change_to_your_servers_public_hostname
@@ -175,4 +180,4 @@
         - Name: `KairosDB`
         - Type: `KairosDB`
         - Url: `https://localhost:8080`
-    - Download and import the example Dashboard from [here](https://github.com/dwettstein/comfortbox-api-services/raw/master/configs/grafana/ComfortBox_7-1482862650706.json): https://raw.githubusercontent.com/dwettstein/comfortbox-api-services/master/configs/grafana/ComfortBox_7-1482862650706.json
+    - Download and import the example Dashboard from [here](https://github.com/dwettstein/comfortbox-api-services/raw/master/configs/grafana/ComfortBox_7-1513874990750): https://raw.githubusercontent.com/dwettstein/comfortbox-api-services/master/configs/grafana/ComfortBox_7-1513874990750
