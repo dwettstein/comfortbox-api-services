@@ -8,6 +8,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 
+## [1.0.0] - 2018-01-17
+### Added
+- systemd service
+
+### Changed
+- Enable AMQP auto recovery
+- Improve crontab for Let's Encrypt
+- Update documentation
+- Update Grafana example dashboard
+
+
 ## [0.5.0] - 2017-07-21
 ### Changed
 - Change DB to PostgreSQL due to issues with User model
@@ -48,7 +59,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Use HTTPS for communicating with API and server
 - Brief documentation about setting up the server
 
-[Unreleased]: https://github.com/dwettstein/comfortbox-api-services/compare/v0.5.0...HEAD
+[Unreleased]: https://github.com/dwettstein/comfortbox-api-services/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/dwettstein/comfortbox-api-services/compare/v0.5.0...v1.0.0
 [0.5.0]: https://github.com/dwettstein/comfortbox-api-services/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/dwettstein/comfortbox-api-services/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/dwettstein/comfortbox-api-services/compare/v0.2.0...v0.3.0

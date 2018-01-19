@@ -7,11 +7,11 @@ After=network.target
 Type=simple
 # Get path of Node.js with `which node` if not /usr/bin/node
 ExecStart=/usr/bin/node /opt/comfortbox-api-services/server/server.js
-Restart=always
+WorkingDirectory=/opt/comfortbox-api-services/server
 Environment=PATH=/usr/bin:/usr/local/bin
 Environment=NODE_ENV=production
 Environment=NODE_PORT=3000
-WorkingDirectory=/opt/comfortbox-api-services/server
+Restart=always
 
 [Install]
 WantedBy=multi-user.target

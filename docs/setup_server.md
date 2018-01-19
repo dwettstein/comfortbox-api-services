@@ -47,9 +47,9 @@
     sudo apt-get install rabbitmq-server
 
     # Create new user
-    rabbitmqctl add_user sa-comfortbox change_to_your_password
-    rabbitmqctl set_user_tags sa-comfortbox management
-    rabbitmqctl set_permissions -p / sa-comfortbox ".*" ".*" ".*"
+    sudo rabbitmqctl add_user sa-comfortbox change_to_your_password
+    sudo rabbitmqctl set_user_tags sa-comfortbox management
+    sudo rabbitmqctl set_permissions -p / sa-comfortbox ".*" ".*" ".*"
 
     # Optional: Enable Browser GUI
     sudo rabbitmq-plugins enable rabbitmq_management
@@ -101,10 +101,11 @@
     ```bash
     curl -L -O https://github.com/dwettstein/kairosdb-rabbitmq/archive/v1.1.3-1-autoupdate.tar.gz
     tar -xzf kairosdb-rabbitmq-1.1.3-1-autoupdate.tar.gz
+    #tar -xzf v1.1.3-1-autoupdate.tar.gz
 
     # Copy necessary files
-    cp kairosdb-rabbitmq-1.1.3-1-autoupdate/dist/lib/* /opt/kairosdb/lib/
-    cp kairosdb-rabbitmq-1.1.3-1-autoupdate/dist/conf/* /opt/kairosdb/conf/
+    cp -n kairosdb-rabbitmq-1.1.3-1-autoupdate/dist/lib/* /opt/kairosdb/lib/
+    cp -n kairosdb-rabbitmq-1.1.3-1-autoupdate/dist/conf/* /opt/kairosdb/conf/
 
     # Update plugin configuration and queue bindings according to your RabbitMQ setup
     cd /opt/kairosdb/conf/
@@ -149,6 +150,7 @@
 
     ```bash
     curl -L -O --insecure https://dl.bintray.com/fg2it/deb-rpi-1b/main/g/grafana_4.6.3_armhf.deb
+    #curl -L -O https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana_4.6.3_amd64.deb
     sudo apt-get install adduser libfontconfig
     sudo dpkg -i grafana_4.6.3_armhf.deb
 
@@ -180,4 +182,5 @@
         - Name: `KairosDB`
         - Type: `KairosDB`
         - Url: `https://localhost:8080`
+        - If the data source cannot be connected, try the option "Skip TLS Verification (Insecure)"
     - Download and import the example Dashboard from [here](https://github.com/dwettstein/comfortbox-api-services/raw/master/configs/grafana/ComfortBox_7-1513874990750): https://raw.githubusercontent.com/dwettstein/comfortbox-api-services/master/configs/grafana/ComfortBox_7-1513874990750
